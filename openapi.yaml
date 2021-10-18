@@ -652,7 +652,7 @@ paths:
     /projects/{project_id}/labels:
         get:
             summary: 'List All Labels'
-            operationId: listProjectTags
+            operationId: listProjectLabels
             tags:
                 - Projects
             parameters:
@@ -675,7 +675,7 @@ paths:
                     format: int32
             responses:
                 '200':
-                    description: 'List of project tags sorted alphabetically'
+                    description: 'List of project labels sorted alphabetically'
                     content:
                         application/json:
                             schema:
@@ -699,8 +699,8 @@ paths:
                                 items:
                                     $ref: '#/components/schemas/Error'
         post:
-            summary: 'Add Tag'
-            operationId: createProjectTag
+            summary: 'Add Label'
+            operationId: createProjectLabel
             tags:
                 - Projects
             parameters:
@@ -726,7 +726,7 @@ paths:
                                                 type: string
             responses:
                 '200':
-                    description: 'The created project tag'
+                    description: 'The created project label'
                     content:
                         application/json:
                             schema:
@@ -747,13 +747,13 @@ paths:
                                 type: array
                                 items:
                                     $ref: '#/components/schemas/Error'
-    /projects/{project_id}/tags/{id}:
+    /projects/{project_id}/labels/{id}:
         delete:
-            summary: 'Delete Tag'
+            summary: 'Delete Label'
             parameters:
               - name: id
                 in: path
-                description: ID of the Tag
+                description: ID of the Label
                 required: true
                 schema:
                     type: string
@@ -765,7 +765,7 @@ paths:
                 schema:
                     type: string
                     format: id
-            operationId: deleteTag
+            operationId: deleteProjectLabel
             tags:
                 - Projects
             responses:
