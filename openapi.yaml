@@ -2153,7 +2153,7 @@ components:
           type: array
           description: "A list of the group's users"
           items: 
-            $ref: '#/components/schemas/Users'
+            $ref: '#/components/schemas/User'
         status:
           type: string
           description: "Indicates the status of the Group"
