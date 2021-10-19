@@ -1433,7 +1433,7 @@ paths:
                             schema:
                                 type: array
                                 items:
-                                $ref: '#/components/schemas/Error' 
+                                    $ref: '#/components/schemas/Error' 
                 default:
                     description: Unexpected error
                     content:
@@ -1441,7 +1441,7 @@ paths:
                             schema:
                                 type: array
                                 items:
-                                $ref: '#/components/schemas/Error'
+                                    $ref: '#/components/schemas/Error'
         delete:
             summary: 'Delete a Tag'
             parameters:
@@ -1986,11 +1986,8 @@ components:
           description: "The title of the Project"
           nullable: true
         address:
-          type: object
-          description: "The physical address of the Project"
           $ref: '#/components/schemas/Address'
         coordinates:
-          description: "The latitude and longitude of the Project"
           $ref: '#/components/schemas/Coordinate'
         featured_image:
           type: array
