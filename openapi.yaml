@@ -2406,28 +2406,29 @@ components:
       properties:
         street_address_1:
           type: string
-          default: "808 P St"
           nullable: true
         street_address_2:
           type: string
-          default: ""
           nullable: true
         city:
           type: string
-          default: "Lincoln"
           nullable: true
         state:
           type: string
-          default: "NE"
           nullable: true
         postal_code:
           type: string
-          default: "68508"
           nullable: true
         country:
           type: string
-          default: "US"
           nullable: true
+      example:
+        street_address_1: "808 P St"
+        city: Lincoln
+        state: NE
+        postal_code: "68508"
+        country: US
+
     Coordinate:
       type: object
       required:
@@ -2437,11 +2438,12 @@ components:
         lat:
           type: number
           format: float
-          default: 28.425852468018288
         lon:
           type: number
           format: float
-          default: -81.47155671113255
+      example:
+        lat: 28.425852468018288
+        long: -81.47155671113255
     ProjectIntegration:
       type: object
       required:
