@@ -42,6 +42,9 @@ paths:
                                 type: array
                                 items:
                                     $ref: '#/components/schemas/Error'
+                                example:
+                                    - code: 500
+                                      message: "An unexpected problem occurred"                                
     /users/current:
         get:
             summary: 'Retrieve Current User'
@@ -63,7 +66,7 @@ paths:
                                 type: array
                                 items:
                                     $ref: '#/components/schemas/Error' 
-                default:
+                '500':
                     description: Unexpected error
                     content:
                         application/json:
@@ -71,6 +74,9 @@ paths:
                                 type: array
                                 items:
                                     $ref: '#/components/schemas/Error'
+                                example:
+                                    - code: 500
+                                      message: "An unexpected problem occurred"             
     /users:
         get:
             summary: 'List All Users'
@@ -115,7 +121,7 @@ paths:
                                 type: array
                                 items:
                                     $ref: '#/components/schemas/Error' 
-                default:
+                '500':
                     description: Unexpected error
                     content:
                         application/json:
@@ -123,6 +129,9 @@ paths:
                                 type: array
                                 items:
                                     $ref: '#/components/schemas/Error'
+                                example:
+                                    - code: 500
+                                      message: "An unexpected problem occurred"    
         post:
             summary: 'Create User'
             operationId: createUser
@@ -159,7 +168,7 @@ paths:
                                 type: array
                                 items:
                                     $ref: '#/components/schemas/Error' 
-                default:
+                '500':
                     description: Unexpected error
                     content:
                         application/json:
@@ -167,6 +176,9 @@ paths:
                                 type: array
                                 items:
                                     $ref: '#/components/schemas/Error'
+                                example:
+                                    - code: 500
+                                      message: "An unexpected problem occurred"    
     /users/{id}:              
         put:
             summary: 'Update User'
@@ -212,7 +224,7 @@ paths:
                                 type: array
                                 items:
                                     $ref: '#/components/schemas/Error' 
-                default:
+                '500':
                     description: Unexpected error
                     content:
                         'application/json':
@@ -220,6 +232,9 @@ paths:
                                 type: array
                                 items:
                                     $ref: '#/components/schemas/Error'
+                                example:
+                                    - code: 500
+                                      message: "An unexpected problem occurred"    
         delete:
             summary: 'Delete User'
             parameters:
@@ -244,7 +259,7 @@ paths:
                                 type: array
                                 items:
                                     $ref: '#/components/schemas/Error' 
-                default:
+                '500':
                     description: Unexpected error
                     content:
                         application/json:
@@ -252,6 +267,9 @@ paths:
                                 type: array
                                 items:
                                     $ref: '#/components/schemas/Error'
+                                example:
+                                    - code: 500
+                                      message: "An unexpected problem occurred"    
     /projects:
         get:
             summary: 'List Projects'
@@ -297,7 +315,7 @@ paths:
                                 type: array
                                 items:
                                     $ref: '#/components/schemas/Error' 
-                default:
+                '500':
                     description: Unexpected error
                     content:
                         application/json:
@@ -305,6 +323,9 @@ paths:
                                 type: array
                                 items:
                                     $ref: '#/components/schemas/Error'
+                                example:
+                                    - code: 500
+                                      message: "An unexpected problem occurred"    
         post:
             summary: 'Create Project'
             operationId: createProject
@@ -343,7 +364,7 @@ paths:
                                 type: array
                                 items:
                                     $ref: '#/components/schemas/Error' 
-                default:
+                '500':
                     description: Unexpected error
                     content:
                         application/json:
@@ -351,6 +372,9 @@ paths:
                                 type: array
                                 items:
                                     $ref: '#/components/schemas/Error'
+                                example:
+                                    - code: 500
+                                      message: "An unexpected problem occurred"    
     /projects/{id}:
         get:
             summary: 'Retrieve Project'
@@ -380,7 +404,7 @@ paths:
                                 type: array
                                 items:
                                     $ref: '#/components/schemas/Error' 
-                default:
+                '500':
                     description: Unexpected error
                     content:
                         application/json:
@@ -388,6 +412,9 @@ paths:
                                 type: array
                                 items:
                                     $ref: '#/components/schemas/Error'
+                                example:
+                                    - code: 500
+                                      message: "An unexpected problem occurred"    
         put:
             summary: 'Update Project'
             parameters:
@@ -415,6 +442,9 @@ paths:
                                     type: array
                                     items:
                                         $ref: '#/components/schemas/Coordinate' 
+                                    example:
+                                        - code: 500
+                                          message: "An unexpected problem occurred"    
             operationId: updateProject
             tags:
                 - Projects
@@ -433,7 +463,7 @@ paths:
                                 type: array
                                 items:
                                     $ref: '#/components/schemas/Error' 
-                default:
+                '500':
                     description: Unexpected error
                     content:
                         application/json:
@@ -441,6 +471,9 @@ paths:
                                 type: array
                                 items:
                                     $ref: '#/components/schemas/Error'
+                                example:
+                                    - code: 500
+                                      message: "An unexpected problem occurred"    
         delete:
             summary: 'Delete Project'
             parameters:
@@ -465,7 +498,7 @@ paths:
                                 type: array
                                 items:
                                     $ref: '#/components/schemas/Error' 
-                default:
+                '500':
                     description: Unexpected error
                     content:
                         application/json:
@@ -473,6 +506,9 @@ paths:
                                 type: array
                                 items:
                                     $ref: '#/components/schemas/Error'
+                                example:
+                                    - code: 500
+                                      message: "An unexpected problem occurred"    
     /projects/{id}/restore:
         put:
             summary: 'Restore Project'
@@ -502,7 +538,7 @@ paths:
                                 type: array
                                 items:
                                     $ref: '#/components/schemas/Error' 
-                default:
+                '500':
                     description: Unexpected error
                     content:
                         application/json:
@@ -510,6 +546,9 @@ paths:
                                 type: array
                                 items:
                                     $ref: '#/components/schemas/Error'
+                                example:
+                                    - code: 500
+                                      message: "An unexpected problem occurred"   
     /projects/{project_id}/photos:
         get:
             summary: 'List Photos'
@@ -590,7 +629,7 @@ paths:
                                 type: array
                                 items:
                                     $ref: '#/components/schemas/Error' 
-                default:
+                '500':
                     description: Unexpected error
                     content:
                         application/json:
@@ -598,6 +637,9 @@ paths:
                                 type: array
                                 items:
                                     $ref: '#/components/schemas/Error'
+                                example:
+                                    - code: 500
+                                      message: "An unexpected problem occurred"   
         post:
             summary: 'Add Photo'
             operationId: createProjectPhoto
@@ -649,6 +691,9 @@ paths:
                                 type: array
                                 items:
                                     $ref: '#/components/schemas/Error'
+                                example:
+                                    - code: 500
+                                      message: "An unexpected problem occurred"   
     /projects/{project_id}/labels:
         get:
             summary: 'List Project Labels'
@@ -698,6 +743,9 @@ paths:
                                 type: array
                                 items:
                                     $ref: '#/components/schemas/Error'
+                                example:
+                                    - code: 500
+                                      message: "An unexpected problem occurred"   
         post:
             summary: 'Add Label'
             operationId: createProjectLabel
@@ -747,6 +795,9 @@ paths:
                                 type: array
                                 items:
                                     $ref: '#/components/schemas/Error'
+                                example:
+                                    - code: 500
+                                      message: "An unexpected problem occurred"   
     /projects/{project_id}/labels/{id}:
         delete:
             summary: 'Delete Label'
@@ -787,6 +838,9 @@ paths:
                                 type: array
                                 items:
                                     $ref: '#/components/schemas/Error'
+                                example:
+                                    - code: 500
+                                      message: "An unexpected problem occurred"   
     /projects/{project_id}/documents:
         get:
             summary: 'List Project Documents'
@@ -836,6 +890,9 @@ paths:
                                 type: array
                                 items:
                                     $ref: '#/components/schemas/Error'
+                                example:
+                                    - code: 500
+                                      message: "An unexpected problem occurred"   
         post:
             summary: 'Upload a Document'
             operationId: createProjectDocument
@@ -885,6 +942,9 @@ paths:
                                 type: array
                                 items:
                                     $ref: '#/components/schemas/Error'
+                                example:
+                                    - code: 500
+                                      message: "An unexpected problem occurred"   
     /photos:
         get:
             summary: 'List Photos'
@@ -966,6 +1026,9 @@ paths:
                                 type: array
                                 items:
                                     $ref: '#/components/schemas/Error'
+                                example:
+                                    - code: 500
+                                      message: "An unexpected problem occurred"   
     /photos/{id}:          
         get:
             summary: 'Retrieve Photo'
@@ -1002,7 +1065,10 @@ paths:
                             schema:
                                 type: array
                                 items:
-                                    $ref: '#/components/schemas/Error'    
+                                    $ref: '#/components/schemas/Error'
+                                example:
+                                    - code: 500
+                                      message: "An unexpected problem occurred"    
         put:
             summary: 'Update Photo'
             parameters:
@@ -1045,11 +1111,14 @@ paths:
                 '500':
                     description: Unexpected error
                     content:
-                        'application/json':
+                        application/json:
                             schema:
                                 type: array
                                 items:
                                     $ref: '#/components/schemas/Error'
+                                example:
+                                    - code: 500
+                                      message: "An unexpected problem occurred"   
         delete:
             summary: 'Delete Photo'
             parameters:
@@ -1082,6 +1151,9 @@ paths:
                                 type: array
                                 items:
                                     $ref: '#/components/schemas/Error'
+                                example:
+                                    - code: 500
+                                      message: "An unexpected problem occurred"   
     /photos/{photo_id}/tags:
         get:
             summary: 'List Photo Tags'
@@ -1132,6 +1204,9 @@ paths:
                                 type: array
                                 items:
                                     $ref: '#/components/schemas/Error'
+                                example:
+                                    - code: 500
+                                      message: "An unexpected problem occurred"   
         post:
             summary: 'Add Tag'
             operationId: createPhotoTag
@@ -1179,6 +1254,9 @@ paths:
                                 type: array
                                 items:
                                     $ref: '#/components/schemas/Error'
+                                example:
+                                    - code: 500
+                                      message: "An unexpected problem occurred"   
     /photos/{photo_id}/comments:
         get:
             summary: 'List Photo Comments'
@@ -1228,6 +1306,9 @@ paths:
                                 type: array
                                 items:
                                     $ref: '#/components/schemas/Error'
+                                example:
+                                    - code: 500
+                                      message: "An unexpected problem occurred"   
         post:
             summary: 'Add Comment'
             operationId: createPhotoComment
@@ -1277,6 +1358,9 @@ paths:
                                 type: array
                                 items:
                                     $ref: '#/components/schemas/Error'
+                                example:
+                                    - code: 500
+                                      message: "An unexpected problem occurred"   
     /tags:
         get:
             summary: 'List All Tags'
@@ -1319,6 +1403,9 @@ paths:
                                 type: array
                                 items:
                                     $ref: '#/components/schemas/Error'
+                                example:
+                                    - code: 500
+                                      message: "An unexpected problem occurred"   
         post:
             summary: 'Create Tag'
             operationId: createTag
@@ -1358,6 +1445,9 @@ paths:
                                 type: array
                                 items:
                                     $ref: '#/components/schemas/Error'
+                                example:
+                                    - code: 500
+                                      message: "An unexpected problem occurred"   
     /tags/{id}:
         get:
             summary: 'Retrieve tag'
@@ -1394,7 +1484,10 @@ paths:
                             schema:
                                 type: array
                                 items:
-                                    $ref: '#/components/schemas/Error' 
+                                    $ref: '#/components/schemas/Error'
+                                example:
+                                    - code: 500
+                                      message: "An unexpected problem occurred"   
         put:
             summary: 'Update Tag'
             parameters:
@@ -1437,11 +1530,14 @@ paths:
                 '500':
                     description: Unexpected error
                     content:
-                        'application/json':
+                        application/json:
                             schema:
                                 type: array
                                 items:
                                     $ref: '#/components/schemas/Error'
+                                example:
+                                    - code: 500
+                                      message: "An unexpected problem occurred"   
         delete:
             summary: 'Delete a Tag'
             parameters:
@@ -1474,6 +1570,9 @@ paths:
                                 type: array
                                 items:
                                     $ref: '#/components/schemas/Error'
+                                example:
+                                    - code: 500
+                                      message: "An unexpected problem occurred"   
     /groups:
         get:
             summary: 'List Groups'
@@ -1516,6 +1615,9 @@ paths:
                                 type: array
                                 items:
                                     $ref: '#/components/schemas/Error'
+                                example:
+                                    - code: 500
+                                      message: "An unexpected problem occurred"   
         post:
             summary: 'Create Group'
             operationId: createGroup
@@ -1559,6 +1661,9 @@ paths:
                                 type: array
                                 items:
                                     $ref: '#/components/schemas/Error'
+                                example:
+                                    - code: 500
+                                      message: "An unexpected problem occurred"   
     /groups/{id}:
         get:
             summary: 'Retrieve Group'
@@ -1595,7 +1700,10 @@ paths:
                             schema:
                                 type: array
                                 items:
-                                    $ref: '#/components/schemas/Error' 
+                                    $ref: '#/components/schemas/Error'
+                                example:
+                                    - code: 500
+                                      message: "An unexpected problem occurred"   
         put:
             summary: 'Update Group'
             parameters:
@@ -1642,11 +1750,14 @@ paths:
                 '500':
                     description: Unexpected error
                     content:
-                        'application/json':
+                        application/json:
                             schema:
                                 type: array
                                 items:
                                     $ref: '#/components/schemas/Error'
+                                example:
+                                    - code: 500
+                                      message: "An unexpected problem occurred"   
         delete:
             summary: 'Delete a Group'
             parameters:
@@ -1679,6 +1790,9 @@ paths:
                                 type: array
                                 items:
                                     $ref: '#/components/schemas/Error'
+                                example:
+                                    - code: 500
+                                      message: "An unexpected problem occurred"   
     /webhooks:
         get:
             summary: 'List Webhooks'
@@ -1721,6 +1835,9 @@ paths:
                                 type: array
                                 items:
                                     $ref: '#/components/schemas/Error'
+                                example:
+                                    - code: 500
+                                      message: "An unexpected problem occurred"   
         post:
             summary: 'Create Webhook'
             operationId: createWebhook
@@ -1765,6 +1882,9 @@ paths:
                                 type: array
                                 items:
                                     $ref: '#/components/schemas/Error'
+                                example:
+                                    - code: 500
+                                      message: "An unexpected problem occurred"   
     /webhooks/{id}:
         get:
             summary: 'Retrieve Webhook'
@@ -1801,7 +1921,10 @@ paths:
                             schema:
                                 type: array
                                 items:
-                                    $ref: '#/components/schemas/Error' 
+                                    $ref: '#/components/schemas/Error'
+                                example:
+                                    - code: 500
+                                      message: "An unexpected problem occurred"   
         put:
             summary: 'Update Webhook'
             parameters:
@@ -1849,11 +1972,14 @@ paths:
                 '500':
                     description: Unexpected error
                     content:
-                        'application/json':
+                        application/json:
                             schema:
                                 type: array
                                 items:
                                     $ref: '#/components/schemas/Error'
+                                example:
+                                    - code: 500
+                                      message: "An unexpected problem occurred"
         delete:
             summary: 'Delete Webhook'
             parameters:
@@ -1886,6 +2012,9 @@ paths:
                                 type: array
                                 items:
                                     $ref: '#/components/schemas/Error'
+                                example:
+                                    - code: 500
+                                      message: "An unexpected problem occurred"    
 components:
   schemas:
     Company:
@@ -1897,9 +2026,11 @@ components:
         id:
           type: string
           description: "The Company's unique ID"
+          example: "2789583992"
         name:
           type: string
           description: "The name of the company"
+          example: "Psych"
         status:
           type: string
           description: "Indicates the status of the Company."
@@ -1908,9 +2039,11 @@ components:
               "cancelled",
               "deleted"
           ]
+          example: "active"
         address:
           type: string
           description: "The address of the company"
+          $ref: '#/components/schemas/Address'
         logo:
           type: array
           description: "A list of images for the different variants of the logo"
@@ -1923,10 +2056,13 @@ components:
       properties:
         id:
           type: string
+          example: "2789583992"
         company_id:
           type: string
+          example: "8292212"
         email_address:
           type: string
+          example: "shawn@psych.co"
         status:
           type: string
           description: "Indicates the status of the Company."
@@ -1934,10 +2070,13 @@ components:
               "active",
               "deleted"
           ]
+          example: "active"
         first_name:
           type: string
+          example: "Shawn"
         last_name:
           type: string
+          example: "Spencer"
         profile_image:
           type: array
           description: "A list of images for the different variants of the user profile image"
@@ -1946,14 +2085,18 @@ components:
         phone_number:
             type: string
             nullable: true
+            example: "4025551212"
         created_at:
             type: integer
             format: int32
+            example: 1490737206
         updated_at:
             type: integer
             format: int32
+            example: 1490737206
         user_url:
             type: string
+            example: "https://app.companycam.com/users/1234"
     Project:
       type: object
       required:
@@ -1962,18 +2105,23 @@ components:
         id:
           type: string
           description: "A unique identifier for the Project."
+          example: "94772883"
         company_id:
           type: string
           description: "A unique identifier for the Company the Project belongs to"
+          example: "8292212"
         creator_id:
           type: string
           description: "The id of the entity that created the Project"
+          example: "2789583992"
         creator_type:
           type: string
           description: "The type of the entity that created the Project"
+          example: "User"
         creator_name:
           type: string
           description: "The display name of the entity that created the Project"
+          example: "Shawn Spencer"
         status:
           type: string
           description: "Indicates the status of the Company."
@@ -1981,10 +2129,12 @@ components:
               "active",
               "deleted"
           ]
+          example: "active"
         name:
           type: string
           description: "The title of the Project"
           nullable: true
+          example: "Psych Office"
         address:
           $ref: '#/components/schemas/Address'
         coordinates:
@@ -1994,12 +2144,21 @@ components:
           description: "A list of images for the different variants of the Project’s feature image."
           items: 
             $ref: '#/components/schemas/ImageURI'
+          example:
+            - type: "original"
+              url: "https://static.companycam.com/VuS0rPvrnNA1490797262.jpg"
+            - type: "web"
+              url: "https://static.companycam.com/VuS0rPvrnNA1490797262web.jpg"
+            - type: "thumbnail"
+              url: "https://static.companycam.com/VuS0rPvrnNA1490797262small.jpg"
         project_url:
           type: string
           description: "The URL to the Project in the web app"
+          example: "https://app.companycam.com/projects/1234"
         embedded_project_url:
           type: string
           description: "The URL to an embeddable photo feed for the Project"
+          example: "https://app.companycam.com/embed/projects/QrL2XjgF8P2dN6MPDRdV2Q"
         integrations:
           type: array
           description: "A list of integrations associated with the Project"
@@ -2008,22 +2167,26 @@ components:
         slug:
           type: string
           description: "A unique identifier use the Project that is used to construct some public URLs"
+          example: "QrL2XjgF8P2dN6MPDRdV2Q"
         public:
           type: boolean
           description: "Indicates whether the Project’s timeline and other public features are enabled"
+          example: false
         geofence:
           type: array
-          description: "The latitude and longitude of the Project"
+          description: "The Geofence latitude and longitude"
           items: 
             $ref: '#/components/schemas/Coordinate'
         created_at:
           type: integer
           format: int32
           description: "Timestamp when the Project was created"
+          example: 1152230400
         updated_at:
           type: integer
           format: int32
           description: "Timestamp when the Project was updated"
+          example: 1395792000
     Photo:
       type: object
       required:
@@ -2032,21 +2195,27 @@ components:
         id:
           type: string
           description: "The unique ID for the photo"
+          example: "4782987471"
         company_id:
           type: string
-          description: "A unique identifier for the Company the Project belongs to"
+          description: "A unique identifier for the Company the Photo belongs to"
+          example: "8292212"
         creator_id:
           type: string
-          description: "The id of the entity that created the Project"
+          description: "The id of the entity that created the Photo"
+          example: "2789583992"
         creator_type:
           type: string
-          description: "The type of the entity that created the Project"
+          description: "The type of the entity that created the Photo"
+          example: "User"
         creator_name:
           type: string
-          description: "The display name of the entity that created the Project"
+          description: "The display name of the entity that created the Photo"
+          example: "Shawn Spencer"
         project_id:
           type: string
           description: "The unique ID of the project the Photo was captured at"
+          example: "94772883"
         processing_status:
           type: string
           description: "Indicates the Photo’s processing status."
@@ -2057,6 +2226,7 @@ components:
               "processing_error",
               "duplicate"
           ]
+          example: "processed"
         coordinates:
           type: array
           description: "The coordinates where the Photo was captured"
@@ -2067,46 +2237,40 @@ components:
           description: "A list of URIs for the different size variants of the photo."
           items: 
             $ref: '#/components/schemas/ImageURI'
+          example:
+            - type: "original"
+              url: "https://static.companycam.com/VuS0rPvrnNA1490797262.jpg"
+            - type: "web"
+              url: "https://static.companycam.com/VuS0rPvrnNA1490797262web.jpg"
+            - type: "thumbnail"
+              url: "https://static.companycam.com/VuS0rPvrnNA1490797262small.jpg"
         hash:
           type: string
           description: "The MD5 hash of the photo"
+          example: "00ab337b7399151e5d4aa3bd4226e8dd"
         internal:
           type: boolean
           description: "Indicates whether the photo is for internal use only and should not be used in marketing or other public materials"
-        embedded_project_url:
+          example: false
+        photo_url:
           type: string
-          description: "The URL to an embeddable photo feed for the Project"
-        integrations:
-          type: array
-          description: "A list of integrations associated with the Project"
-          items: 
-            $ref: '#/components/schemas/ProjectIntegration'  
-        slug:
-          type: string
-          description: "A unique identifier use the Project that is used to construct some public URLs"
-        public:
-          type: boolean
-          description: "Indicates whether the Project’s timeline and other public features are enabled"
-        geofence:
-          type: array
-          description: "The latitude and longitude of the Project"
-          items: 
-            $ref: '#/components/schemas/Coordinate'
+          description: "The link to the photo in the web app"
+          example: "https://app.companycam.com/photos/8675309"
         captured_at:
           type: integer
           format: int32
           description: "Timestamp when the Photo was captured"
+          example: 1152230396
         created_at:
           type: integer
           format: int32
           description: "Timestamp when the photo was created on the server. This may differ from the captured_at field"
+          example: 1152230608
         updated_at:
           type: integer
           format: int32
           description: "Timestamp when the photo was last updated"
-        photo_url:
-          type: string
-          description: "The link to the photo in the web app"
+          example: 1152230400
     Tag:
       type: object
       required:
@@ -2115,23 +2279,29 @@ components:
         id:
           type: string
           description: "A unique ID for the Tag."
+          example: "48892885"
         company_id:
           type: string
           description: "A unique ID for the Company the Tag belongs to"
+          example: "8292212"
         display_value:
           type: string
           description: "The display value of the Tag. Used to display to the user"
+          example: "Front Side"
         value:
           type: string
           description: "The lowercase version of the display_value. This is useful for searching and sorting"
+          example: "front side"
         created_at:
           type: integer
           format: int32
           description: "Timestamp when the Tag was created on the server"
+          example: 1152230608
         updated_at:
           type: integer
           format: int32
           description: "Timestamp when the Tag was last updated"
+          example: 1152230700
     Group:
       type: object
       required:
@@ -2140,12 +2310,15 @@ components:
         id:
           type: string
           description: "A unique ID for the Group."
+          example: "3992883"
         company_id:
           type: string
           description: "A unique ID for the Company the Group belongs to"
+          example: "8292212"
         name:
           type: string
           description: "The title of the Group"
+          example: "The Psych Crew"
         users:
           type: array
           description: "A list of the group's users"
@@ -2158,17 +2331,21 @@ components:
               "active",
               "deleted"
           ]
+          example: "active"
+        group_url:
+          type: string
+          description: "The link to the group in the web app"
+          example: "https://app.companycam.com/groups/1234"
         created_at:
           type: integer
           format: int32
           description: "Timestamp when the Group was created on the server"
+          example: 1490737206
         updated_at:
           type: integer
           format: int32
           description: "Timestamp when the Group was last updated"
-        group_url:
-          type: string
-          description: "The link to the group in the web app"
+          example: 1490737744
     Webhook:
       type: object
       required:
@@ -2202,6 +2379,15 @@ components:
           type: integer
           format: int32
           description: "Timestamp when the Webhook was last updated"
+      example:
+          id: "42"
+          company_id: "8675309"
+          url: "https://sweet-webhooks.com/my/webhook/endpoint"
+          scopes: ["*"]
+          token: "123456"
+          enabled: true
+          created_at: 1490737206
+          updated_at: 1490737406
     ImageURI:
       type: object
       required:
@@ -2212,6 +2398,9 @@ components:
           type: string
         uri:
           type: string
+      example:
+        type: "original"
+        url: "https://static.companycam.com/VuS0rPvrnNA1490797262.jpg"
     Address:
       type: object
       properties:
@@ -2261,10 +2450,10 @@ components:
       properties:
         type:
           type: string
-          default: "JobNimbus"
+          example: "JobNimbus"
         relation_id:
           type: string
-          default: "123"
+          example: "123"
     Comment:
       type: object
       required:
@@ -2273,36 +2462,45 @@ components:
         id:
           type: string
           description: "The unique ID of the comment"
+          example: "4782987471"
         creator_id:
           type: string
           description: "The id of the entity that created the Comment"
+          example: "2789583992"
         creator_type:
           type: string
           description: "The type of the entity that created the Comment"
+          example: "User"
         creator_name:
           type: string
           description: "The display name of the entity that created the Comment"
+          example: "Shawn Spencer"
         commentable_id:
           type: string
           description: "The unique ID of the entity that the comment was applied to"
+          example: "388472672"
         commentable_type:
           type: string
           description: "The type of the entity that the comment was applied to."
+          example: "Photo"
         status:
           type: string
-          default: active
           description: "This should always be active"
+          example: "active"
         content:
           type: string
           description: "The contents of the comment. This may contain whitespace characters such as newlines."
+          example: "Have you seen this yet?"
         created_at:
           type: integer
           format: int32
           description: "Timestamp when the Comment was created on the server"
+          example: 1152230608
         updated_at:
           type: integer
           format: int32
           description: "Timestamp when the Comment was last updated"
+          example: 1152230400
     Document:
       type: object
       required:
@@ -2311,39 +2509,50 @@ components:
         id:
           type: string
           description: "The unique ID of the document"
+          example: "115"
         creator_id:
           type: string
           description: "The unique ID of the entity that created the document"
+          example: "8675309"
         creator_type:
           type: string
           description: "The type of the entity that created the document"
+          example: "User"
         creator_name:
           type: string
           description: "The unique ID of the company that owns the document"
+          example: "CompanyCam Developer"
         project_id:
           type: string
           description: "The unique ID of the project the document is attached to"
+          example: "48892885"
         name:
           type: string
           description: "the filename of the document"
+          example: "silver-kadabra-measurements.pdf"
         url:
           type: string
           description: "The URL where the document can be downloaded/viewed from"
+          example: "https://static.companycam.com/documents/8374c65e-2048-41d4-b4a7-a9c839fd388a.pdf"
         content_type:
           type: string
           description: "The content type of the document. (e.g. application/pdf)"
+          example: "application/pdf"
         byte_size:
           type: integer
           format: int32
           description: "The size of the document in bytes."
+          example: 3457903
         created_at:
           type: integer
           format: int32
           description: "Timestamp when the Document was created on the server"
+          example: 1621857746
         updated_at:
           type: integer
           format: int32
           description: "Timestamp when the Document was last updated"
+          example: 1621857746
     Error:
       type: object
       required:
@@ -2353,8 +2562,10 @@ components:
         code:
           type: integer
           format: int32
+          example: 400
         message:
           type: string
+          example: "A problem occurred"
   securitySchemes:
     BearerAuth:
       type: http
