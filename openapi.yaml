@@ -211,7 +211,7 @@ paths:
                             schema:
                                 type: array
                                 items:
-                                $ref: '#/components/schemas/Error' 
+                                    $ref: '#/components/schemas/Error' 
                 default:
                     description: Unexpected error
                     content:
@@ -219,7 +219,7 @@ paths:
                             schema:
                                 type: array
                                 items:
-                                $ref: '#/components/schemas/Error'
+                                    $ref: '#/components/schemas/Error'
         delete:
             summary: 'Delete User'
             parameters:
@@ -1041,7 +1041,7 @@ paths:
                             schema:
                                 type: array
                                 items:
-                                $ref: '#/components/schemas/Error' 
+                                    $ref: '#/components/schemas/Error' 
                 default:
                     description: Unexpected error
                     content:
@@ -1049,7 +1049,7 @@ paths:
                             schema:
                                 type: array
                                 items:
-                                $ref: '#/components/schemas/Error'
+                                    $ref: '#/components/schemas/Error'
         delete:
             summary: 'Delete Photo'
             parameters:
@@ -1638,7 +1638,7 @@ paths:
                             schema:
                                 type: array
                                 items:
-                                $ref: '#/components/schemas/Error' 
+                                    $ref: '#/components/schemas/Error' 
                 default:
                     description: Unexpected error
                     content:
@@ -1646,7 +1646,7 @@ paths:
                             schema:
                                 type: array
                                 items:
-                                $ref: '#/components/schemas/Error'
+                                    $ref: '#/components/schemas/Error'
         delete:
             summary: 'Delete a Group'
             parameters:
@@ -1845,7 +1845,7 @@ paths:
                             schema:
                                 type: array
                                 items:
-                                $ref: '#/components/schemas/Error' 
+                                    $ref: '#/components/schemas/Error' 
                 default:
                     description: Unexpected error
                     content:
@@ -1853,7 +1853,7 @@ paths:
                             schema:
                                 type: array
                                 items:
-                                $ref: '#/components/schemas/Error'
+                                    $ref: '#/components/schemas/Error'
         delete:
             summary: 'Delete a Webhook'
             parameters:
