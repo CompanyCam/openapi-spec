@@ -34,7 +34,7 @@ paths:
                                 type: array
                                 items:
                                     $ref: '#/components/schemas/Error' 
-                default:
+                '500':
                     description: Unexpected error
                     content:
                         application/json:
@@ -512,7 +512,7 @@ paths:
                                     $ref: '#/components/schemas/Error'
     /projects/{project_id}/photos:
         get:
-            summary: 'List All Photos'
+            summary: 'List Photos'
             operationId: listProjectPhotos
             tags:
                 - Projects
@@ -641,7 +641,7 @@ paths:
                                 type: array
                                 items:
                                     $ref: '#/components/schemas/Error' 
-                default:
+                '500':
                     description: Unexpected error
                     content:
                         application/json:
@@ -651,7 +651,7 @@ paths:
                                     $ref: '#/components/schemas/Error'
     /projects/{project_id}/labels:
         get:
-            summary: 'List All Labels'
+            summary: 'List Project Labels'
             operationId: listProjectLabels
             tags:
                 - Projects
@@ -690,7 +690,7 @@ paths:
                                 type: array
                                 items:
                                     $ref: '#/components/schemas/Error' 
-                default:
+                '500':
                     description: Unexpected error
                     content:
                         application/json:
@@ -739,7 +739,7 @@ paths:
                                 type: array
                                 items:
                                     $ref: '#/components/schemas/Error' 
-                default:
+                '500':
                     description: Unexpected error
                     content:
                         application/json:
@@ -779,7 +779,7 @@ paths:
                                 type: array
                                 items:
                                     $ref: '#/components/schemas/Error' 
-                default:
+                '500':
                     description: Unexpected error
                     content:
                         application/json:
@@ -789,7 +789,7 @@ paths:
                                     $ref: '#/components/schemas/Error'
     /projects/{project_id}/documents:
         get:
-            summary: 'List All Project Documents'
+            summary: 'List Project Documents'
             operationId: listProjectDocuments
             tags:
                 - Projects
@@ -828,7 +828,7 @@ paths:
                                 type: array
                                 items:
                                     $ref: '#/components/schemas/Error' 
-                default:
+                '500':
                     description: Unexpected error
                     content:
                         application/json:
@@ -877,7 +877,7 @@ paths:
                                 type: array
                                 items:
                                     $ref: '#/components/schemas/Error' 
-                default:
+                '500':
                     description: Unexpected error
                     content:
                         application/json:
@@ -958,7 +958,7 @@ paths:
                                 type: array
                                 items:
                                     $ref: '#/components/schemas/Error' 
-                default:
+                '500':
                     description: Unexpected error
                     content:
                         application/json:
@@ -995,7 +995,7 @@ paths:
                                 type: array
                                 items:
                                     $ref: '#/components/schemas/Error' 
-                default:
+                '500':
                     description: Unexpected error
                     content:
                         application/json:
@@ -1042,7 +1042,7 @@ paths:
                                 type: array
                                 items:
                                     $ref: '#/components/schemas/Error' 
-                default:
+                '500':
                     description: Unexpected error
                     content:
                         'application/json':
@@ -1074,7 +1074,7 @@ paths:
                                 type: array
                                 items:
                                     $ref: '#/components/schemas/Error' 
-                default:
+                '500':
                     description: Unexpected error
                     content:
                         application/json:
@@ -1084,7 +1084,7 @@ paths:
                                     $ref: '#/components/schemas/Error'
     /photos/{photo_id}/tags:
         get:
-            summary: 'List All Tags'
+            summary: 'List Photo Tags'
             operationId: listPhotoTags
             tags:
                 - Photos
@@ -1124,7 +1124,7 @@ paths:
                                 type: array
                                 items:
                                     $ref: '#/components/schemas/Error' 
-                default:
+                '500':
                     description: Unexpected error
                     content:
                         application/json:
@@ -1171,7 +1171,7 @@ paths:
                                 type: array
                                 items:
                                     $ref: '#/components/schemas/Error' 
-                default:
+                '500':
                     description: Unexpected error
                     content:
                         application/json:
@@ -1181,7 +1181,7 @@ paths:
                                     $ref: '#/components/schemas/Error'
     /photos/{photo_id}/comments:
         get:
-            summary: 'List All Comments'
+            summary: 'List Photo Comments'
             operationId: listPhotoComments
             tags:
                 - Photos
@@ -1220,7 +1220,7 @@ paths:
                                 type: array
                                 items:
                                     $ref: '#/components/schemas/Error' 
-                default:
+                '500':
                     description: Unexpected error
                     content:
                         application/json:
@@ -1269,7 +1269,7 @@ paths:
                                 type: array
                                 items:
                                     $ref: '#/components/schemas/Error' 
-                default:
+                '500':
                     description: Unexpected error
                     content:
                         application/json:
@@ -1311,7 +1311,7 @@ paths:
                                 type: array
                                 items:
                                     $ref: '#/components/schemas/Error' 
-                default:
+                '500':
                     description: Unexpected error
                     content:
                         application/json:
@@ -1350,7 +1350,7 @@ paths:
                                 type: array
                                 items:
                                     $ref: '#/components/schemas/Error' 
-                default:
+                '500':
                     description: Unexpected error
                     content:
                         application/json:
@@ -1387,7 +1387,7 @@ paths:
                                 type: array
                                 items:
                                     $ref: '#/components/schemas/Error' 
-                default:
+                '500':
                     description: Unexpected error
                     content:
                         application/json:
@@ -1434,7 +1434,7 @@ paths:
                                 type: array
                                 items:
                                     $ref: '#/components/schemas/Error' 
-                default:
+                '500':
                     description: Unexpected error
                     content:
                         'application/json':
@@ -1466,7 +1466,7 @@ paths:
                                 type: array
                                 items:
                                     $ref: '#/components/schemas/Error' 
-                default:
+                '500':
                     description: Unexpected error
                     content:
                         application/json:
@@ -1508,7 +1508,7 @@ paths:
                                 type: array
                                 items:
                                     $ref: '#/components/schemas/Error' 
-                default:
+                '500':
                     description: Unexpected error
                     content:
                         application/json:
@@ -1551,7 +1551,7 @@ paths:
                                 type: array
                                 items:
                                     $ref: '#/components/schemas/Error' 
-                default:
+                '500':
                     description: Unexpected error
                     content:
                         application/json:
@@ -1588,7 +1588,7 @@ paths:
                                 type: array
                                 items:
                                     $ref: '#/components/schemas/Error' 
-                default:
+                '500':
                     description: Unexpected error
                     content:
                         application/json:
@@ -1639,7 +1639,7 @@ paths:
                                 type: array
                                 items:
                                     $ref: '#/components/schemas/Error' 
-                default:
+                '500':
                     description: Unexpected error
                     content:
                         'application/json':
@@ -1671,7 +1671,7 @@ paths:
                                 type: array
                                 items:
                                     $ref: '#/components/schemas/Error' 
-                default:
+                '500':
                     description: Unexpected error
                     content:
                         application/json:
@@ -1713,7 +1713,7 @@ paths:
                                 type: array
                                 items:
                                     $ref: '#/components/schemas/Error' 
-                default:
+                '500':
                     description: Unexpected error
                     content:
                         application/json:
@@ -1757,7 +1757,7 @@ paths:
                                 type: array
                                 items:
                                     $ref: '#/components/schemas/Error' 
-                default:
+                '500':
                     description: Unexpected error
                     content:
                         application/json:
@@ -1794,7 +1794,7 @@ paths:
                                 type: array
                                 items:
                                     $ref: '#/components/schemas/Error' 
-                default:
+                '500':
                     description: Unexpected error
                     content:
                         application/json:
@@ -1846,7 +1846,7 @@ paths:
                                 type: array
                                 items:
                                     $ref: '#/components/schemas/Error' 
-                default:
+                '500':
                     description: Unexpected error
                     content:
                         'application/json':
@@ -1855,7 +1855,7 @@ paths:
                                 items:
                                     $ref: '#/components/schemas/Error'
         delete:
-            summary: 'Delete a Webhook'
+            summary: 'Delete Webhook'
             parameters:
               - name: id
                 in: path
@@ -1878,7 +1878,7 @@ paths:
                                 type: array
                                 items:
                                     $ref: '#/components/schemas/Error' 
-                default:
+                '500':
                     description: Unexpected error
                     content:
                         application/json:
