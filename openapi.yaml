@@ -747,8 +747,8 @@ paths:
                                     - code: 500
                                       message: "An unexpected problem occurred"   
         post:
-            summary: 'Add Label'
-            operationId: createProjectLabel
+            summary: 'Add Labels'
+            operationId: createProjectLabels
             tags:
                 - Projects
             parameters:
@@ -773,7 +773,7 @@ paths:
                                             items: 
                                                 type: string
             responses:
-                '200':
+                '201':
                     description: 'The created project label'
                     content:
                         application/json:
@@ -920,7 +920,7 @@ paths:
                                         attachment:
                                             type: string
             responses:
-                '200':
+                '201':
                     description: 'The created project tag'
                     content:
                         application/json:
@@ -1094,7 +1094,7 @@ paths:
             tags:
                 - Photos
             responses:
-                '200':
+                '201':
                     description: 'The updated photo'
                     content:
                         'application/json':
@@ -1208,8 +1208,8 @@ paths:
                                     - code: 500
                                       message: "An unexpected problem occurred"   
         post:
-            summary: 'Add Tag'
-            operationId: createPhotoTag
+            summary: 'Add Tags'
+            operationId: createPhotoTags
             tags:
                 - Photos
             parameters:
@@ -1226,13 +1226,12 @@ paths:
                     'application/json':
                         schema:
                             properties:
-                                tag:
-                                    type: object
-                                    properties:
-                                        display_value:
-                                            type: string
+                                tags:
+                                    type: array
+                                    items:
+                                        type: string
             responses:
-                '200':
+                '201':
                     description: 'The created project tag'
                     content:
                         application/json:
@@ -1328,15 +1327,13 @@ paths:
                     'application/json':
                         schema:
                             properties:
-                                project:
+                                comment:
                                     type: object
                                     properties:
-                                        labels:
-                                            type: array
-                                            items: 
-                                                type: string
+                                        content:
+                                            type: string
             responses:
-                '200':
+                '201':
                     description: 'The created photo comment'
                     content:
                         application/json:
@@ -1423,7 +1420,7 @@ paths:
                                         display_value:
                                             type: string
             responses:
-                '200':
+                '201':
                     description: 'The created project tag'
                     content:
                         application/json:
@@ -1513,7 +1510,7 @@ paths:
             tags:
                 - Tags
             responses:
-                '200':
+                '201':
                     description: 'The updated tag'
                     content:
                         'application/json':
@@ -1639,7 +1636,7 @@ paths:
                                             items: 
                                                 type: string
             responses:
-                '200':
+                '201':
                     description: 'The created group'
                     content:
                         application/json:
@@ -1733,7 +1730,7 @@ paths:
             tags:
                 - Groups
             responses:
-                '200':
+                '201':
                     description: 'The updated group'
                     content:
                         'application/json':
@@ -1770,7 +1767,7 @@ paths:
                     format: id
             operationId: deleteGroup
             tags:
-                - Tags
+                - Groups
             responses:
                 '204':
                     description: 'No Content'
@@ -1860,7 +1857,7 @@ paths:
                                 token:
                                     type: string
             responses:
-                '200':
+                '201':
                     description: 'The created webhook'
                     content:
                         application/json:
@@ -1955,7 +1952,7 @@ paths:
             tags:
                 - Webhooks
             responses:
-                '200':
+                '201':
                     description: 'The updated webhook'
                     content:
                         'application/json':
