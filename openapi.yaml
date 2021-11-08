@@ -917,11 +917,14 @@ paths:
                                     properties:
                                         name:
                                             type: string
+                                            example: "test.txt"
                                         attachment:
                                             type: string
+                                            description: base64 encoded file contents
+                                            example: "VGVzdAo="
             responses:
                 '201':
-                    description: 'The created project tag'
+                    description: 'The created project document'
                     content:
                         application/json:
                             schema:
