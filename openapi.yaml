@@ -5,6 +5,39 @@ info:
 servers:
   - url: 'https://api.companycam.com/v2'
 paths:
+    /company:
+        get:
+            summary: 'Retrieve Company'
+            operationId: getCurrentCompany
+            tags:
+              - Company
+            responses:
+                '200':
+                    description: 'Details about the current company'
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/Company'
+                '400':
+                    description: 'Bad Request'
+                    content:
+                        application/json:
+                            schema:
+                                type: array
+                                items:
+                                    $ref: '#/components/schemas/Error' 
+                '500':
+                    description: Unexpected error
+                    content:
+                        application/json:
+                            schema:
+                                type: array
+                                items:
+                                    $ref: '#/components/schemas/Error'
+                                example:
+                                    - code: 500
+                                      message: "An unexpected problem occurred"                                
+
     /companies/{id}:
         get:
             summary: 'Retrieve Company'
