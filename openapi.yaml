@@ -36,52 +36,11 @@ paths:
                                     $ref: '#/components/schemas/Error'
                                 example:
                                     - code: 500
-                                      message: "An unexpected problem occurred"                                
-
-    /companies/{id}:
-        get:
-            summary: 'Retrieve Company'
-            operationId: getCompany
-            tags:
-              - Company
-            parameters:
-              - name: id
-                in: path
-                description: ID of the Company
-                required: true
-                schema:
-                    type: string
-                    format: id
-            responses:
-                '200':
-                    description: 'Details about a company'
-                    content:
-                        application/json:
-                            schema:
-                                $ref: '#/components/schemas/Company'
-                '400':
-                    description: 'Bad Request'
-                    content:
-                        application/json:
-                            schema:
-                                type: array
-                                items:
-                                    $ref: '#/components/schemas/Error' 
-                '500':
-                    description: Unexpected error
-                    content:
-                        application/json:
-                            schema:
-                                type: array
-                                items:
-                                    $ref: '#/components/schemas/Error'
-                                example:
-                                    - code: 500
-                                      message: "An unexpected problem occurred"                                
+                                      message: "An unexpected problem occurred"
     /users/current:
         get:
             summary: 'Retrieve Current User'
-            operationId: getUser
+            operationId: getCurrentUser
             tags:
                 - Users
             responses:
@@ -109,7 +68,7 @@ paths:
                                     $ref: '#/components/schemas/Error'
                                 example:
                                     - code: 500
-                                      message: "An unexpected problem occurred"             
+                                      message: "An unexpected problem occurred"
     /users:
         get:
             summary: 'List All Users'
@@ -212,7 +171,46 @@ paths:
                                 example:
                                     - code: 500
                                       message: "An unexpected problem occurred"    
-    /users/{id}:              
+    /users/{id}:
+        get:
+            summary: 'Retrieve User'
+            operationId: getUser
+            tags:
+                - Users
+            parameters:
+              - name: id
+                in: path
+                description: ID of the User
+                required: true
+                schema:
+                    type: string
+                    format: id
+            responses:
+                '200':
+                    description: 'Details about the user'
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/User'
+                '400':
+                    description: 'Bad Request'
+                    content:
+                        application/json:
+                            schema:
+                                type: array
+                                items:
+                                    $ref: '#/components/schemas/Error'
+                '500':
+                    description: Unexpected error
+                    content:
+                        application/json:
+                            schema:
+                                type: array
+                                items:
+                                    $ref: '#/components/schemas/Error'
+                                example:
+                                    - code: 500
+                                      message: "An unexpected problem occurred"
         put:
             summary: 'Update User'
             parameters:
@@ -474,10 +472,7 @@ paths:
                                 geofence:
                                     type: array
                                     items:
-                                        $ref: '#/components/schemas/Coordinate' 
-                                    example:
-                                        - code: 500
-                                          message: "An unexpected problem occurred"    
+                                        $ref: '#/components/schemas/Coordinate'
             operationId: updateProject
             tags:
                 - Projects
@@ -2476,7 +2471,7 @@ components:
           format: float
       example:
         lat: 28.425852468018288
-        long: -81.47155671113255
+        lon: -81.47155671113255
     ProjectIntegration:
       type: object
       required:
