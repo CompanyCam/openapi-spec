@@ -686,16 +686,24 @@ paths:
                 content:
                     'application/json':
                         schema:
+                            required:
+                                - photo
                             properties:
                                 photo:
                                     type: object
+                                    required:
+                                        - uri
+                                        - captured_at
                                     properties:
                                         coordinates:
                                             $ref: '#/components/schemas/Coordinate' 
                                         uri:
                                             type: string
                                         captured_at:
-                                            type: string
+                                            description: "Unix timestamp when the Photo was captured" 
+                                            type: integer
+                                            format: int32
+                                            example: 1637770053
             responses:
                 '200':
                     description: 'The created project photo'
