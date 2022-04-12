@@ -379,7 +379,9 @@ paths:
                                 geofence:
                                     type: array
                                     items:
-                                        $ref: '#/components/schemas/Coordinate' 
+                                        $ref: '#/components/schemas/Coordinate'
+                                primary_contact:
+                                  $ref: '#/components/schemas/ProjectContactRequest'
             responses:
                 '200':
                     description: 'The created project'
@@ -473,6 +475,8 @@ paths:
                                     type: array
                                     items:
                                         $ref: '#/components/schemas/Coordinate'
+                                primary_contact:
+                                  $ref: '#/components/schemas/ProjectContactRequest'
             operationId: updateProject
             tags:
                 - Projects
@@ -2213,6 +2217,8 @@ components:
           description: "The Geofence latitude and longitude"
           items: 
             $ref: '#/components/schemas/Coordinate'
+        primary_contact:
+          $ref: '#/components/schemas/ProjectContactResponse'
         created_at:
           type: integer
           format: int32
@@ -2591,6 +2597,39 @@ components:
           format: int32
           description: "Timestamp when the Document was last updated"
           example: 1621857746
+    ProjectContactResponse:
+      type: object
+      properties:
+        id:
+          type: string
+          description: "The unique ID of the project contact"
+          example: "115"
+        project_id:
+          type: string
+          description: "The unique ID of the project the contact is attached to"
+          example: "48892885"
+        name:
+          type: string
+          description: "The name of the contact"
+          example: "Joe Smith"
+        email:
+          type: string
+          description: "The email of the contact"
+          example: "joe.smith@companycam.com"
+        phone_number:
+          type: string
+          description: "The phone of the contact"
+          example: "402-555-1212"
+        created_at:
+          type: integer
+          format: int32
+          description: "Timestamp when the Project Contact was created on the server"
+          example: 1621857746
+        updated_at:
+          type: integer
+          format: int32
+          description: "Timestamp when the Project Contact was last updated"
+          example: 1621857746
     Error:
       type: object
       required:
@@ -2604,10 +2643,26 @@ components:
         message:
           type: string
           example: "A problem occurred"
+    ProjectContactRequest:
+      type: object
+      required:
+        - name
+      properties:
+        name:
+          type: string
+          description: "The name of the contact"
+          example: "Joe Smith"
+        email:
+          type: string
+          description: "The email of the contact"
+          example: "joe.smith@companycam.com"
+        phone_number:
+          type: string
+          description: "The phone of the contact"
+          example: "402-555-1212"
   securitySchemes:
     BearerAuth:
       type: http
       scheme: bearer
-      
 security:
   - BearerAuth: []
