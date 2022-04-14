@@ -320,13 +320,55 @@ paths:
                     format: int32
               - name: query
                 in: query
-                required: false
-                description: "An optional value to filter the projects by name and address line 1"
+                description: "An optional value to do a full text search for projects"
                 schema:
                     type: string
               - name: modified_since
                 in: query
                 description: "An ISO8601 formatted date and time to return projects modified on or after the provided value"
+                schema:
+                    type: string
+              - name: name
+                in: query
+                description: "An optional value to filter projects by name"
+                schema:
+                    type: string
+              - name: street_address_1
+                in: query
+                description: "An optional value to filter projects by street address 1"
+                schema:
+                    type: string
+              - name: city
+                in: query
+                description: "An optional value to filter projects by city"
+                schema:
+                    type: string
+              - name: postal_code
+                in: query
+                description: "An optional value to filter projects by postal code"
+                schema:
+                    type: string
+              - name: labels
+                in: query
+                description: "A comma delimited list of labels to filter projects by"
+                example: "active,todo"
+                schema:
+                    type: string
+              - name: creator_id
+                in: query
+                description: "An optional value to filter projects by the user id who created the project"
+                schema:
+                    type: string
+              - name: integration_type
+                in: query
+                description: "An optional value to filter projects by the integration type it was created from"
+                example: "Jobber"
+                schema:
+                    type: string
+              - name: integration_relation_id
+                in: query
+                description: "An optional value to filter projects by the integration id associated with the project"
+                example: job-1234
                 schema:
                     type: string
             responses:
