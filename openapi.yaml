@@ -328,26 +328,6 @@ paths:
                 description: "An ISO8601 formatted date and time to return projects modified on or after the provided value"
                 schema:
                     type: string
-              - name: name
-                in: query
-                description: "An optional value to filter projects by name"
-                schema:
-                    type: string
-              - name: street_address_1
-                in: query
-                description: "An optional value to filter projects by street address 1"
-                schema:
-                    type: string
-              - name: city
-                in: query
-                description: "An optional value to filter projects by city"
-                schema:
-                    type: string
-              - name: postal_code
-                in: query
-                description: "An optional value to filter projects by postal code"
-                schema:
-                    type: string
               - name: labels
                 in: query
                 description: "A comma delimited list of labels to filter projects by"
