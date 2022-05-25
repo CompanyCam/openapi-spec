@@ -351,6 +351,18 @@ paths:
                 example: job-1234
                 schema:
                     type: string
+              - name: primary_contact_email
+                in: query
+                description: "An optional value to filter projects by the primary contact email associated with the project"
+                example: joe@email.com
+                schema:
+                    type: string
+              - name: primary_contact_phone_number
+                in: query
+                description: "An optional value to filter projects by the primary contact phone number associated with the project. Only numbers allowed"
+                example: "5551234444"
+                schema:
+                    type: string
             responses:
                 '200':
                     description: 'List of projects sorted by most recent activity first'
@@ -2241,6 +2253,11 @@ components:
             $ref: '#/components/schemas/Coordinate'
         primary_contact:
           $ref: '#/components/schemas/ProjectContactResponse'
+        labels:
+          type: array
+          description: "A list of labels associated with the project"
+          items: 
+            $ref: '#/components/schemas/ProjectIntegration'  
         created_at:
           type: integer
           format: int32
