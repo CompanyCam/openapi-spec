@@ -382,6 +382,11 @@ paths:
                                         $ref: '#/components/schemas/Coordinate'
                                 primary_contact:
                                   $ref: '#/components/schemas/ProjectContactRequest'
+                                assigned_users:
+                                    type: array
+                                    example: ["1234", "2356"]
+                                    items:
+                                        type: integer
             responses:
                 '200':
                     description: 'The created project'
@@ -477,6 +482,11 @@ paths:
                                         $ref: '#/components/schemas/Coordinate'
                                 primary_contact:
                                   $ref: '#/components/schemas/ProjectContactRequest'
+                                assigned_users:
+                                    type: array
+                                    example: ["1234", "2356"]
+                                    items:
+                                        type: integer
             operationId: updateProject
             tags:
                 - Projects
@@ -2219,6 +2229,11 @@ components:
             $ref: '#/components/schemas/Coordinate'
         primary_contact:
           $ref: '#/components/schemas/ProjectContactResponse'
+        assigned_users:
+          type: array
+          description: "A list of assigned users for the project"
+          items:
+            $ref: '#/components/schemas/User'
         created_at:
           type: integer
           format: int32
