@@ -382,11 +382,6 @@ paths:
                                         $ref: '#/components/schemas/Coordinate'
                                 primary_contact:
                                   $ref: '#/components/schemas/ProjectContactRequest'
-                                assigned_users:
-                                    type: array
-                                    example: ["1234", "2356"]
-                                    items:
-                                        type: integer
             responses:
                 '200':
                     description: 'The created project'
@@ -482,11 +477,6 @@ paths:
                                         $ref: '#/components/schemas/Coordinate'
                                 primary_contact:
                                   $ref: '#/components/schemas/ProjectContactRequest'
-                                assigned_users:
-                                    type: array
-                                    example: ["1234", "2356"]
-                                    items:
-                                        type: integer
             operationId: updateProject
             tags:
                 - Projects
@@ -743,7 +733,148 @@ paths:
                                     $ref: '#/components/schemas/Error'
                                 example:
                                     - code: 500
+                                      message: "An unexpected problem occurred"  
+    /projects/{project_id}/users:
+        get:
+            summary: 'List assigned users'
+            operationId: listProjectAssignedUsers
+            tags:
+                - Projects
+            parameters:
+              - name: project_id
+                in: path
+                description: ID of the Project
+                required: true
+                schema:
+                    type: string
+                    format: id
+              - name: page
+                in: query
+                schema:
+                    type: integer
+                    format: int32
+              - name: per_page
+                in: query
+                schema:
+                    type: integer
+                    format: int32
+            responses:
+                '200':
+                    description: 'List of project assigned users'
+                    content:
+                        application/json:
+                            schema:
+                                type: array
+                                items:
+                                    $ref: '#/components/schemas/User'
+                '400':
+                    description: 'Bad Request'
+                    content:
+                        application/json:
+                            schema:
+                                type: array
+                                items:
+                                    $ref: '#/components/schemas/Error' 
+                '500':
+                    description: Unexpected error
+                    content:
+                        application/json:
+                            schema:
+                                type: array
+                                items:
+                                    $ref: '#/components/schemas/Error'
+                                example:
+                                    - code: 500
+                                      message: "An unexpected problem occurred"
+    /projects/{project_id}/users/{user_id}:         
+        put:
+            summary: 'Assign a user to a project'
+            operationId: assignUserToProject
+            tags:
+                - Projects
+            parameters:
+              - name: project_id
+                in: path
+                description: ID of the Project
+                required: true
+                schema:
+                    type: string
+                    format: id
+              - name: user_id
+                in: path
+                description: ID of the User
+                required: true
+                schema:
+                    type: string
+                    format: id
+            responses:
+                '201':
+                    description: 'The assigned user'
+                    content:
+                        'application/json':
+                            schema:
+                                $ref: '#/components/schemas/User'
+                '400':
+                    description: 'Bad Request'
+                    content:
+                        'application/json':
+                            schema:
+                                type: array
+                                items:
+                                    $ref: '#/components/schemas/Error' 
+                '500':
+                    description: Unexpected error
+                    content:
+                        application/json:
+                            schema:
+                                type: array
+                                items:
+                                    $ref: '#/components/schemas/Error'
+                                example:
+                                    - code: 500
                                       message: "An unexpected problem occurred"   
+        delete:
+            summary: 'Remove assigned user from project'
+            operationId: removeUserFromProject
+            tags:
+                - Projects
+            parameters:
+              - name: project_id
+                in: path
+                description: ID of the Project
+                required: true
+                schema:
+                    type: string
+                    format: id
+              - name: user_id
+                in: path
+                description: ID of the User
+                required: true
+                schema:
+                    type: string
+                    format: id
+            responses:
+                '204':
+                    description: 'No Content'
+                '400':
+                    description: 'Bad Request'
+                    content:
+                        application/json:
+                            schema:
+                                type: array
+                                items:
+                                    $ref: '#/components/schemas/Error' 
+                '500':
+                    description: Unexpected error
+                    content:
+                        application/json:
+                            schema:
+                                type: array
+                                items:
+                                    $ref: '#/components/schemas/Error'
+                                example:
+                                    - code: 500
+                                      message: "An unexpected problem occurred"        
     /projects/{project_id}/labels:
         get:
             summary: 'List Project Labels'
@@ -2229,11 +2360,6 @@ components:
             $ref: '#/components/schemas/Coordinate'
         primary_contact:
           $ref: '#/components/schemas/ProjectContactResponse'
-        assigned_users:
-          type: array
-          description: "A list of assigned users for the project"
-          items:
-            $ref: '#/components/schemas/User'
         created_at:
           type: integer
           format: int32
