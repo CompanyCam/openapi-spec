@@ -734,7 +734,7 @@ paths:
                                 example:
                                     - code: 500
                                       message: "An unexpected problem occurred"  
-    /projects/{project_id}/users:
+    /projects/{project_id}/assigned_users:
         get:
             summary: 'List assigned users'
             operationId: listProjectAssignedUsers
@@ -786,7 +786,7 @@ paths:
                                 example:
                                     - code: 500
                                       message: "An unexpected problem occurred"
-    /projects/{project_id}/users/{user_id}:         
+    /projects/{project_id}/assigned_users/{user_id}:         
         put:
             summary: 'Assign a user to a project'
             operationId: assignUserToProject
