@@ -3,13 +3,18 @@ on:
   push:
     branches:
       - main
+      - fix/github-actions
 jobs:
-  build:
+  sync:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-      - uses: readmeio/github-readme-sync@v2
+      - name: Checkout this repo
+        uses: actions/checkout@v3
+
+      # Run GitHub Action to sync OpenAPI file at [path-to-file.json]
+      - name: GitHub Action
+        # We recommend specifying a fixed version, i.e. @7.5.0
+        # Docs: https://docs.github.com/actions/using-workflows/workflow-syntax-for-github-actions#example-using-versioned-actions
+        uses: readmeio/rdme@7.5.0
         with:
-          readme-oas-key: ${{ secrets.README_OAS_KEY }}
-          oas-file-path: './openapi.yaml'
-          api-version: 'v2.0.1'
+          rdme: openapi ./openapi.yaml --key=${{ secrets.README_OAS_KEY }} --id=${{ secrets.README_API_DEFINITION_ID }}
