@@ -964,7 +964,120 @@ paths:
                             schema:
                                 $ref: '#/components/schemas/Error'
                             example: 
-                                errors: ["An unexpected error occured"]    
+                                errors: ["An unexpected error occured"]
+    /projects/{project_id}/collaborators:
+        get:
+            summary: 'List project collaborators'
+            operationId: listProjectCollaborators
+            tags:
+                - Projects
+            parameters:
+              - name: project_id
+                in: path
+                description: ID of the Project
+                required: true
+                schema:
+                    type: string
+                    format: id
+              - name: page
+                in: query
+                schema:
+                    type: integer
+                    format: int32
+              - name: per_page
+                in: query
+                schema:
+                    type: integer
+                    format: int32
+            responses:
+                '200':
+                    description: 'List of project collaborators'
+                    content:
+                        application/json:
+                            schema:
+                                type: array
+                                items:
+                                    $ref: '#/components/schemas/ProjectCollaborator'
+                '400':
+                    description: 'Bad Request'
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/Error'
+                            example: 
+                                errors: ["Bad Request"]
+                '404':
+                    description: 'Not found'
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/Error'
+                            example: 
+                                errors: ["Record not found"]
+                '500':
+                    description: Unexpected error
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/Error'
+                            example: 
+                                errors: ["An unexpected error occured"]
+    /projects/{project_id}/collaborators/invite:         
+        post:
+            summary: 'Generate a collaborator invite link'
+            operationId: inviteProjectCollaborator
+            tags:
+                - Projects
+            parameters:
+              - name: project_id
+                in: path
+                description: ID of the Project
+                required: true
+                schema:
+                    type: string
+                    format: id
+            requestBody:
+                required: true
+                content:
+                    'application/json':
+                        schema:
+                            properties:
+                                permissions:
+                                    type: array
+                                    description: "Allow the company to add photos"
+                                    items:
+                                        type: string
+            responses:
+                '201':
+                    description: 'The collaboration invite'
+                    content:
+                        'application/json':
+                            schema:
+                                $ref: '#/components/schemas/ProjectCollaborationInvite'
+                '400':
+                    description: 'Bad Request'
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/Error'
+                            example: 
+                                errors: ["Bad Request"]
+                '404':
+                    description: 'Not found'
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/Error'
+                            example: 
+                                errors: ["Record not found"]
+                '500':
+                    description: Unexpected error
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/Error'
+                            example: 
+                                errors: ["An unexpected error occured"]
     /projects/{project_id}/labels:
         get:
             summary: 'List Project Labels'
@@ -3027,6 +3140,40 @@ components:
           type: string
           description: "The phone of the contact"
           example: "402-555-1212"
+    ProjectCollaborator:
+      type: object
+      properties:
+        company_id:
+          type: string
+          description: "The unique ID of the collaborating company"
+          example: "48892885"
+        project_id:
+          type: string
+          description: "The unique ID of the project the collaborator is apart of"
+          example: "48892885"
+        permissions:
+          type: array
+          description: "The permissions for the collaborator"
+          items:
+            type: string
+        sharing_start_at:
+          type: integer
+          format: int32
+          description: "Timestamp when the project collaboration was started."
+        created_at:
+          type: integer
+          format: int32
+          description: "Timestamp when the project collaboration was created on the server"
+        updated_at:
+          type: integer
+          format: int32
+          description: "Timestamp when the project collaboration was last updated"
+    ProjectCollaborationInvite:
+        type: object
+        properties:
+            invite_url:
+                type: string
+                description: "The invite url"
   securitySchemes:
     BearerAuth:
       type: http
