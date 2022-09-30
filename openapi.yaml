@@ -938,6 +938,60 @@ paths:
                                 $ref: '#/components/schemas/Error'
                             example: 
                                 errors: ["An unexpected error occured"]    
+    /projects/{project_id}/notepad:         
+        put:
+            summary: 'Update the project notepad'
+            operationId: updateProjectNotepad
+            tags:
+                - Projects
+            parameters:
+              - name: project_id
+                in: path
+                description: ID of the Project
+                required: true
+                schema:
+                    type: string
+                    format: id
+            requestBody:
+                required: true
+                content:
+                    'application/json':
+                        schema:
+                            properties:
+                                notepad:
+                                    type: string
+                                    example: "An updated dexcription of the project"
+            responses:
+                '201':
+                    description: 'The project notepad'
+                    content:
+                        'application/json':
+                            schema:
+                                $ref: '#/components/schemas/ProjectNotepad'
+                '400':
+                    description: 'Bad Request'
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/Error'
+                            example: 
+                                errors: ["Bad Request"]
+                '404':
+                    description: 'Not found'
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/Error'
+                            example: 
+                                errors: ["Record not found"]
+                '500':
+                    description: Unexpected error
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/Error'
+                            example: 
+                                errors: ["An unexpected error occured"]
     /projects/{project_id}/labels:
         get:
             summary: 'List Project Labels'
@@ -3022,9 +3076,6 @@ components:
                 type: array
                 items:
                     $ref: '#/components/schemas/Coordinate'
-            notepad:
-                type: string
-                description: "Notes or description of the project"
             primary_contact:
                 $ref: '#/components/schemas/ProjectContactRequest'
         example:
@@ -3035,10 +3086,18 @@ components:
                 state: NE
                 postal_code: "68508"
                 country: US
-            notepad: "Be sure to let the client know when the work is finished"
             coordinates:
                 lat: 28.425852468018288
                 lon: -81.47155671113255
+    ProjectNotepad:
+        type: object
+        required:
+            - notepad
+        properties:
+            notepad:
+                type: string
+        example:
+            notepad: "Be sure to let the client know when the work is finished"
   securitySchemes:
     BearerAuth:
       type: http
