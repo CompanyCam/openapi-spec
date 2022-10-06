@@ -1245,6 +1245,118 @@ paths:
                                 $ref: '#/components/schemas/Error'
                             example: 
                                 errors: ["An unexpected error occured"] 
+    /projects/{project_id}/comments:
+        get:
+            summary: 'List Project Comments'
+            operationId: listProjectComments
+            tags:
+                - Projects
+            parameters:
+              - name: project_id
+                in: path
+                description: ID of the Project
+                required: true
+                schema:
+                    type: string
+                    format: id
+              - name: page
+                in: query
+                schema:
+                    type: integer
+                    format: int32
+              - name: per_page
+                in: query
+                schema:
+                    type: integer
+                    format: int32
+            responses:
+                '200':
+                    description: 'List of most recent project comments'
+                    content:
+                        application/json:
+                            schema:
+                                type: array
+                                items:
+                                    $ref: '#/components/schemas/Comment'
+                '400':
+                    description: 'Bad Request'
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/Error'
+                            example: 
+                                errors: ["Bad Request"]
+                '404':
+                    description: 'Not found'
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/Error'
+                            example: 
+                                errors: ["Record not found"]
+                '500':
+                    description: Unexpected error
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/Error'
+                            example: 
+                                errors: ["An unexpected error occured"]
+        post:
+            summary: 'Add Project Comment'
+            operationId: createProjectComment
+            tags:
+                - Projects
+            parameters:
+              - name: project_id
+                in: path
+                description: ID of the Project
+                required: true
+                schema:
+                    type: string
+                    format: id
+            requestBody:
+                required: true
+                content:
+                    'application/json':
+                        schema:
+                            properties:
+                                comment:
+                                    type: object
+                                    properties:
+                                        content:
+                                            type: string
+            responses:
+                '201':
+                    description: 'The created project comment'
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/Comment'
+                '400':
+                    description: 'Bad Request'
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/Error'
+                            example: 
+                                errors: ["Bad Request"]
+                '404':
+                    description: 'Not found'
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/Error'
+                            example: 
+                                errors: ["Record not found"]
+                '500':
+                    description: Unexpected error
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/Error'
+                            example: 
+                                errors: ["An unexpected error occured"] 
     /photos:
         get:
             summary: 'List Photos'
