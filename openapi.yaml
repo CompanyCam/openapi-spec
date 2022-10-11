@@ -525,8 +525,6 @@ paths:
                                     type: array
                                     items:
                                         $ref: '#/components/schemas/Coordinate'
-                                primary_contact:
-                                  $ref: '#/components/schemas/ProjectContactRequest'
             operationId: updateProject
             tags:
                 - Projects
