@@ -3222,6 +3222,15 @@ components:
             items:
                 type: string
                 enum: ['can_view_content', 'can_add_content', 'can_comment', 'can_use_todos']
+        accepted_at:
+            type: integer
+            format: int32
+            description: "Timestamp when the project collaboration was accepted"
+            example: 1621857746
+        accepted_by_id:
+            type: string
+            description: "The unique ID of the user who accepted the collaboration"
+            example: "48892885"
         created_at:
             type: integer
             format: int32
@@ -3247,12 +3256,16 @@ components:
                 type: string
                 description: "The invite url to accept the invitation"
                 example: "https://l.cmpy.cam/P8EfEmTSB4BbrKUgsd"
+            status:
+                type: string
+                description: "The status of the invitation. It will be one of `accepted`, `expired`, or `pending`"
+                enum: ['accepted', 'expired', 'pending']
             accepted_at:
                 type: integer
                 format: int32
                 description: "Timestamp when the project invitation was accepted"
                 example: 1621857746
-            accepted_by:
+            accepted_by_id:
                 type: string
                 description: "The unique ID of the company who accepted the invitation"
                 example: "48892885"
@@ -3267,7 +3280,7 @@ components:
                 items:
                     type: string
                     enum: ['can_view_content', 'can_add_content', 'can_comment', 'can_use_todos']
-            created_by:
+            creator_id:
                 type: string
                 description: "The unique ID of the user who created the invitation"
                 example: "48892885"
