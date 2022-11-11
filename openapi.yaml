@@ -1022,10 +1022,66 @@ paths:
                                 $ref: '#/components/schemas/Error'
                             example: 
                                 errors: ["An unexpected error occured"]
-    /projects/{project_id}/collaborators/invite:         
+    /projects/{project_id}/invitations:      
+        get:
+            summary: 'List project invitations'
+            operationId: listProjectInvitations
+            tags:
+                - Projects
+            parameters:
+              - name: project_id
+                in: path
+                description: ID of the Project
+                required: true
+                schema:
+                    type: string
+                    format: id
+              - name: page
+                in: query
+                schema:
+                    type: integer
+                    format: int32
+              - name: per_page
+                in: query
+                schema:
+                    type: integer
+                    format: int32
+            responses:
+                '200':
+                    description: 'List of project invitations'
+                    content:
+                        application/json:
+                            schema:
+                                type: array
+                                items:
+                                    $ref: '#/components/schemas/ProjectInvitation'
+                '400':
+                    description: 'Bad Request'
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/Error'
+                            example: 
+                                errors: ["Bad Request"]
+                '404':
+                    description: 'Not found'
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/Error'
+                            example: 
+                                errors: ["Record not found"]
+                '500':
+                    description: Unexpected error
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/Error'
+                            example: 
+                                errors: ["An unexpected error occured"]   
         post:
-            summary: 'Generate a collaborator invite link'
-            operationId: inviteProjectCollaborator
+            summary: 'Create a new project invitation for collaboration'
+            operationId: createInvitation
             tags:
                 - Projects
             parameters:
@@ -1044,16 +1100,17 @@ paths:
                             properties:
                                 permissions:
                                     type: array
-                                    description: "Allow the company to add photos"
+                                    description: "The permissions for the collaborator who accepts the invitation"
                                     items:
                                         type: string
+                                        enum: ['can_view_content', 'can_add_content', 'can_comment', 'can_use_todos']
             responses:
                 '201':
-                    description: 'The collaboration invite'
+                    description: 'The invitation response'
                     content:
                         'application/json':
                             schema:
-                                $ref: '#/components/schemas/ProjectCollaborationInvite'
+                                $ref: '#/components/schemas/ProjectInvitation'
                 '400':
                     description: 'Bad Request'
                     content:
@@ -3143,37 +3200,87 @@ components:
     ProjectCollaborator:
       type: object
       properties:
-        company_id:
-          type: string
-          description: "The unique ID of the collaborating company"
-          example: "48892885"
-        project_id:
-          type: string
-          description: "The unique ID of the project the collaborator is apart of"
-          example: "48892885"
-        permissions:
-          type: array
-          description: "The permissions for the collaborator"
-          items:
+        id:
             type: string
-        sharing_start_at:
-          type: integer
-          format: int32
-          description: "Timestamp when the project collaboration was started."
+            description: "The unique ID of the collaborator"
+            example: "48892885"
+        company_id:
+            type: string
+            description: "The unique ID of the collaborating company"
+            example: "48892885"
+        project_id:
+            type: string
+            description: "The unique ID of the project the collaborator is apart of"
+            example: "48892885"
+        project_invitation_id:
+            type: string
+            description: "The unique ID of the invitation for the collaboration"
+            example: "48892885"
+        permissions:
+            type: array
+            description: "The permissions for the collaborator"
+            items:
+                type: string
+                enum: ['can_view_content', 'can_add_content', 'can_comment', 'can_use_todos']
         created_at:
-          type: integer
-          format: int32
-          description: "Timestamp when the project collaboration was created on the server"
+            type: integer
+            format: int32
+            description: "Timestamp when the project collaboration was created on the server"
+            example: 1621857746
         updated_at:
-          type: integer
-          format: int32
-          description: "Timestamp when the project collaboration was last updated"
-    ProjectCollaborationInvite:
+            type: integer
+            format: int32
+            description: "Timestamp when the project collaboration was last updated"
+            example: 1621857746
+    ProjectInvitation:
         type: object
         properties:
+            id:
+                type: string
+                description: "The unique ID of invitation"
+                example: "48892885"
+            project_id:
+                type: string
+                description: "The unique ID of the project"
+                example: "48892885"
             invite_url:
                 type: string
-                description: "The invite url"
+                description: "The invite url to accept the invitation"
+                example: "https://l.cmpy.cam/P8EfEmTSB4BbrKUgsd"
+            accepted_at:
+                type: integer
+                format: int32
+                description: "Timestamp when the project invitation was accepted"
+                example: 1621857746
+            accepted_by:
+                type: string
+                description: "The unique ID of the company who accepted the invitation"
+                example: "48892885"
+            expires_at:
+                type: integer
+                format: int32
+                description: "Timestamp when the project invitation expires"
+                example: 1621857746
+            permissions:
+                type: array
+                description: "The permissions for the collaborator who accepts the invitation"
+                items:
+                    type: string
+                    enum: ['can_view_content', 'can_add_content', 'can_comment', 'can_use_todos']
+            created_by:
+                type: string
+                description: "The unique ID of the user who created the invitation"
+                example: "48892885"
+            created_at:
+                type: integer
+                format: int32
+                description: "Timestamp when the project invitation was created on the server"
+                example: 1621857746
+            updated_at:
+                type: integer
+                format: int32
+                description: "Timestamp when the project invitation was last updated"
+                example: 1621857749
   securitySchemes:
     BearerAuth:
       type: http
