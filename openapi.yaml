@@ -3227,10 +3227,6 @@ components:
             format: int32
             description: "Timestamp when the project collaboration was accepted"
             example: 1621857746
-        accepted_by_id:
-            type: string
-            description: "The unique ID of the user who accepted the collaboration"
-            example: "48892885"
         created_at:
             type: integer
             format: int32
