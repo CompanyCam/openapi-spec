@@ -1021,7 +1021,7 @@ paths:
                             schema:
                                 $ref: '#/components/schemas/Error'
                             example: 
-                                errors: ["An unexpected error occured"]
+                                errors: ["An unexpected error occurred"]
     /projects/{project_id}/invitations:      
         get:
             summary: 'List project invitations'
@@ -1078,7 +1078,7 @@ paths:
                             schema:
                                 $ref: '#/components/schemas/Error'
                             example: 
-                                errors: ["An unexpected error occured"]   
+                                errors: ["An unexpected error occurred"]   
         post:
             summary: 'Create a new project invitation for collaboration'
             operationId: createInvitation
@@ -1134,7 +1134,7 @@ paths:
                             schema:
                                 $ref: '#/components/schemas/Error'
                             example: 
-                                errors: ["An unexpected error occured"]
+                                errors: ["An unexpected error occurred"]
     /projects/{project_id}/labels:
         get:
             summary: 'List Project Labels'
@@ -3210,7 +3210,7 @@ components:
             example: "48892885"
         project_id:
             type: string
-            description: "The unique ID of the project the collaborator is apart of"
+            description: "The unique ID of the project the collaborator is a part of"
             example: "48892885"
         project_invitation_id:
             type: string
