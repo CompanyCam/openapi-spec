@@ -423,7 +423,7 @@ paths:
                                 primary_contact:
                                   $ref: '#/components/schemas/ProjectContactRequest'
             responses:
-                '200':
+                '201':
                     description: 'The created project'
                     content:
                         application/json:
