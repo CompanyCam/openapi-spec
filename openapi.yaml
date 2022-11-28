@@ -1372,11 +1372,6 @@ paths:
                 schema:
                     type: integer
                     format: int32
-              - name: query
-                in: query
-                description: "An optional value to filter the projects by name and address line 1"
-                schema:
-                    type: string
               - name: start_date
                 in: query
                 description: "An ISO8601 formatted date and time to return projects modified on or after the provided value"
