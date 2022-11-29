@@ -407,7 +407,39 @@ paths:
                 content:
                     'application/json':
                         schema:
-                            $ref: '#/components/schemas/ProjectInputRequest'
+                            properties:
+                                name:
+                                    description: "The name of the project"
+                                    default: "Joe Smith"
+                                    type: string
+                                address:
+                                    $ref: '#/components/schemas/Address' 
+                                coordinates:
+                                    $ref: '#/components/schemas/Coordinate' 
+                                geofence:
+                                    type: array
+                                    items:
+                                        $ref: '#/components/schemas/Coordinate'
+                                    example:
+                                        [{
+                                            "lat": 28.425852468018288,
+                                            "lon": -81.47155671113255
+                                            }, 
+                                            {
+                                            "lat": 18.425852468018288,
+                                            "lon": -81.47155671113255
+                                            }, 
+                                            {
+                                            "lat": 8.425852468018288,
+                                            "lon": -91.47155671113255
+                                            }, 
+                                            {
+                                            "lat": 28.425852468018288,
+                                            "lon": -101.47155671113255
+                                            }
+                                        ]
+                                primary_contact:
+                                  $ref: '#/components/schemas/ProjectContactRequest'
             responses:
                 '200':
                     description: 'The created project'
@@ -499,7 +531,36 @@ paths:
                 content:
                     'application/json':
                         schema:
-                            $ref: '#/components/schemas/ProjectInputRequest'
+                            properties:
+                                name:
+                                    description: "The name of the project"
+                                    type: string
+                                address:
+                                    $ref: '#/components/schemas/Address' 
+                                coordinates:
+                                    $ref: '#/components/schemas/Coordinate' 
+                                geofence:
+                                    type: array
+                                    items:
+                                        $ref: '#/components/schemas/Coordinate'
+                                    example:
+                                        [{
+                                            "lat": 28.425852468018288,
+                                            "lon": -81.47155671113255
+                                            }, 
+                                            {
+                                            "lat": 18.425852468018288,
+                                            "lon": -81.47155671113255
+                                            }, 
+                                            {
+                                            "lat": 8.425852468018288,
+                                            "lon": -91.47155671113255
+                                            }, 
+                                            {
+                                            "lat": 28.425852468018288,
+                                            "lon": -101.47155671113255
+                                            }
+                                        ]
             operationId: updateProject
             tags:
                 - Projects
