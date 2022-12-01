@@ -3403,37 +3403,6 @@ components:
           type: string
           description: "The phone of the contact"
           example: "402-555-1212"
-    ProjectInputRequest:
-        type: object
-        required:
-          - name
-            address 
-        properties:
-            name:
-                description: "The name of the project"
-                type: string
-                example: "Test Project"
-            address:
-                $ref: '#/components/schemas/Address' 
-            coordinates:
-                $ref: '#/components/schemas/Coordinate' 
-            geofence:
-                type: array
-                items:
-                    $ref: '#/components/schemas/Coordinate'
-            primary_contact:
-                $ref: '#/components/schemas/ProjectContactRequest'
-        example:
-            name: "Test Project"
-            address:
-                street_address_1: "808 P St"
-                city: Lincoln
-                state: NE
-                postal_code: "68508"
-                country: US
-            coordinates:
-                lat: 28.425852468018288
-                lon: -81.47155671113255
     ProjectNotepad:
         type: object
         required:
