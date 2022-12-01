@@ -420,6 +420,24 @@ paths:
                                     type: array
                                     items:
                                         $ref: '#/components/schemas/Coordinate'
+                                    example:
+                                        [{
+                                            "lat": 28.425852468018288,
+                                            "lon": -81.47155671113255
+                                            }, 
+                                            {
+                                            "lat": 18.425852468018288,
+                                            "lon": -81.47155671113255
+                                            }, 
+                                            {
+                                            "lat": 8.425852468018288,
+                                            "lon": -91.47155671113255
+                                            }, 
+                                            {
+                                            "lat": 28.425852468018288,
+                                            "lon": -101.47155671113255
+                                            }
+                                        ]
                                 primary_contact:
                                   $ref: '#/components/schemas/ProjectContactRequest'
             responses:
@@ -525,6 +543,24 @@ paths:
                                     type: array
                                     items:
                                         $ref: '#/components/schemas/Coordinate'
+                                    example:
+                                        [{
+                                            "lat": 28.425852468018288,
+                                            "lon": -81.47155671113255
+                                            }, 
+                                            {
+                                            "lat": 18.425852468018288,
+                                            "lon": -81.47155671113255
+                                            }, 
+                                            {
+                                            "lat": 8.425852468018288,
+                                            "lon": -91.47155671113255
+                                            }, 
+                                            {
+                                            "lat": 28.425852468018288,
+                                            "lon": -101.47155671113255
+                                            }
+                                        ]
             operationId: updateProject
             tags:
                 - Projects
@@ -939,6 +975,62 @@ paths:
             responses:
                 '204':
                     description: 'No Content'
+                '400':
+                    description: 'Bad Request'
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/Error'
+                            example: 
+                                errors: ["Bad Request"]
+                '404':
+                    description: 'Not found'
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/Error'
+                            example: 
+                                errors: ["Record not found"]
+                '500':
+                    description: Unexpected error
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/Error'
+                            example: 
+                                errors: ["An unexpected error occured"]
+    /projects/{project_id}/notepad:         
+        put:
+            summary: 'Update the project notepad'
+            operationId: updateProjectNotepad
+            tags:
+                - Projects
+            parameters:
+              - name: project_id
+                in: path
+                description: ID of the Project
+                required: true
+                schema:
+                    type: string
+                    format: id
+            requestBody:
+                required: true
+                content:
+                    'application/json':
+                        schema:
+                            required:
+                              - notepad
+                            properties:
+                                notepad:
+                                    type: string
+                                    example: "An updated dexcription of the project"
+            responses:
+                '201':
+                    description: 'The project notepad'
+                    content:
+                        'application/json':
+                            schema:
+                                $ref: '#/components/schemas/ProjectNotepad'
                 '400':
                     description: 'Bad Request'
                     content:
@@ -2816,7 +2908,7 @@ components:
           example: "Shawn Spencer"
         status:
           type: string
-          description: "Indicates the status of the Company."
+          description: "Indicates the status of the Project."
           enum: [
               "active",
               "deleted"
@@ -2871,6 +2963,10 @@ components:
             $ref: '#/components/schemas/Coordinate'
         primary_contact:
           $ref: '#/components/schemas/ProjectContactResponse'
+        notepad:
+          type: string
+          description: "Notes or description of the project"
+          example: "Be sure to let the client know when the work is finished"
         created_at:
           type: integer
           format: int32
@@ -3307,6 +3403,15 @@ components:
           type: string
           description: "The phone of the contact"
           example: "402-555-1212"
+    ProjectNotepad:
+        type: object
+        required:
+            - notepad
+        properties:
+            notepad:
+                type: string
+        example:
+            notepad: "Be sure to let the client know when the work is finished"
     ProjectCollaborator:
       type: object
       properties:
