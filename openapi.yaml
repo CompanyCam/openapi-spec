@@ -1590,6 +1590,162 @@ paths:
                                 $ref: '#/components/schemas/Error'
                             example: 
                                 errors: ["An unexpected error occured"] 
+    /projects/{project_id}/checklists:
+        get:
+            summary: 'List Project Checklists'
+            operationId: listProjectChecklists
+            tags:
+                - Projects
+                - Checklists
+            parameters:
+              - name: project_id
+                in: path
+                description: ID of the Project
+                required: true
+                schema:
+                    type: string
+                    format: id
+            responses:
+                '200':
+                    description: 'List of project checklists'
+                    content:
+                        application/json:
+                            schema:
+                                type: array
+                                items:
+                                    $ref: '#/components/schemas/Checklists'
+                '400':
+                    description: 'Bad Request'
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/Error'
+                            example: 
+                                errors: ["Bad Request"]
+                '404':
+                    description: 'Not found'
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/Error'
+                            example: 
+                                errors: ["Record not found"]
+                '500':
+                    description: Unexpected error
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/Error'
+                            example: 
+                                errors: ["An unexpected error occured"]
+        post:
+            summary: 'Create Checklist on Project from a Checklist Template'
+            operationId: createProjectChecklist
+            tags:
+                - Projects
+                - Checklists
+            parameters:
+              - name: project_id
+                in: path
+                description: ID of the Project
+                required: true
+                schema:
+                    type: string
+                    format: id
+            requestBody:
+                required: true
+                content:
+                    'application/json':
+                        schema:
+                            properties:
+                                checklist_template_id:
+                                    type: string
+                                    format: id
+                                    required: true
+            responses:
+                '201':
+                    description: 'The created project checklist'
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/Checklist'
+                '400':
+                    description: 'Bad Request'
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/Error'
+                            example: 
+                                errors: ["Bad Request"]
+                '404':
+                    description: 'Not found'
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/Error'
+                            example: 
+                                errors: ["Record not found"]
+                '500':
+                    description: Unexpected error
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/Error'
+                            example: 
+                                errors: ["An unexpected error occured"] 
+    /projects/{project_id}/checklists/{id:}:
+        get:
+            summary: 'Retrieve Project Checklist'
+            operationId: getProjectChecklist
+            tags:
+                - Projects
+                - Checklists
+            parameters:
+              - name: project_id
+                in: path
+                description: ID of the Project
+                required: true
+                schema:
+                    type: string
+                    format: id
+              - name: id
+                in: path
+                description: ID of the Checklist
+                required: true
+                schema:
+                    type: string
+                    format: id
+            responses:
+                '200':
+                    description: 'Details about the project checklist'
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/Checklist'
+                '400':
+                    description: 'Bad Request'
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/Error'
+                            example: 
+                                errors: ["Bad Request"]
+                '404':
+                    description: 'Not found'
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/Error'
+                            example: 
+                                errors: ["Record not found"]
+                '500':
+                    description: Unexpected error
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/Error'
+                            example: 
+                                errors: ["An unexpected error occured"]
     /photos:
         get:
             summary: 'List Photos'
@@ -2275,6 +2431,46 @@ paths:
                                 $ref: '#/components/schemas/Error'
                             example: 
                                 errors: ["An unexpected error occured"]
+    /templates/checklists:
+        get:
+            summary: 'List All Checklist Templates'
+            operationId: listChecklistTemplates
+            tags:
+                - Checklists
+                - Templates
+            responses:
+                '200':
+                    description: 'List of Checklist Templates'
+                    content:
+                        application/json:
+                            schema:
+                                type: array
+                                items:
+                                    $ref: '#/components/schemas/ChecklistTemplate'
+                '400':
+                    description: 'Bad Request'
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/Error'
+                            example: 
+                                errors: ["Bad Request"]
+                '404':
+                    description: 'Not found'
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/Error'
+                            example: 
+                                errors: ["Record not found"]
+                '500':
+                    description: Unexpected error
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/Error'
+                            example: 
+                                errors: ["An unexpected error occured"]  
     /groups:
         get:
             summary: 'List Groups'
@@ -3186,7 +3382,83 @@ components:
         state: NE
         postal_code: "68508"
         country: US
-
+    Checklist:
+      type: object
+      properties:
+        id:
+          type: string
+          description: "The unique ID for the Checklist"
+          example: "4782987471"
+        company_id:
+          type: string
+          description: "A unique identifier for the Company the Checklist belongs to"
+          example: "8292212"
+        project_id:
+          type: string
+          description: "A unique identifier for the Project the Checklist belongs to"
+          example: "812"
+        name:
+          type: string
+          description: "The name for the Checklist"
+          example: "Roof state survey"
+        created_at:
+          type: integer
+          format: int32
+          description: "Timestamp when the Checklist was created on the server."
+          example: 1152230608
+        updated_at:
+          type: integer
+          format: int32
+          description: "Timestamp when the Checklist was last updated"
+          example: 1152230400
+        completed_at:
+          type: integer
+          format: int32
+          nullable: true
+          description: "Timestamp when the Checklist was completed"
+          example: 1232230400
+        creator_id:
+          type: string
+          description: "A unique identifier for the creator of the Checklist"
+          example: "314"
+        checklist_template_id:
+          type: string
+          nullable: true
+          description: "A unique identifier for the template used to create the Checklist"
+          example: "4156"
+        is_populating:
+          type: boolean
+          description: "Flag indicating wether the Checklist is still being created or not"
+          example: false
+    ChecklistTemplate:
+      type: object
+      properties:
+        id:
+          type: string
+          description: "The unique ID for the ChecklistTemplate"
+          example: "4782987471"
+        company_id:
+          type: string
+          description: "A unique identifier for the Company the ChecklistTemplate belongs to"
+          example: "8292212"
+        name:
+          type: string
+          description: "The name for the ChecklistTemplate"
+          example: "Roof state survey"
+        description:
+          type: string
+          description: "The description for the ChecklistTemplate"
+          example: "A list to make sure everything was properly done"
+        created_at:
+          type: integer
+          format: int32
+          description: "Timestamp when the ChecklistTemplate was created on the server."
+          example: 1152230608
+        updated_at:
+          type: integer
+          format: int32
+          description: "Timestamp when the ChecklistTemplate was last updated"
+          example: 1152230400
     Coordinate:
       type: object
       required:
