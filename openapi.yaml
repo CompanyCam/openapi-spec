@@ -1596,7 +1596,6 @@ paths:
             operationId: listProjectChecklists
             tags:
                 - Projects
-                - Checklists
             parameters:
               - name: project_id
                 in: path
@@ -1643,7 +1642,6 @@ paths:
             operationId: createProjectChecklist
             tags:
                 - Projects
-                - Checklists
             parameters:
               - name: project_id
                 in: path
@@ -1698,7 +1696,6 @@ paths:
             operationId: getProjectChecklist
             tags:
                 - Projects
-                - Checklists
             parameters:
               - name: project_id
                 in: path
@@ -2435,7 +2432,6 @@ paths:
             summary: 'List All Checklist Templates'
             operationId: listChecklistTemplates
             tags:
-                - Checklists
                 - Templates
             responses:
                 '200':
