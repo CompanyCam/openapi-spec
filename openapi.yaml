@@ -1692,7 +1692,7 @@ paths:
                                 $ref: '#/components/schemas/Error'
                             example: 
                                 errors: ["An unexpected error occured"] 
-    /projects/{project_id}/checklists/{id:}:
+    /projects/{project_id}/checklists/{id}:
         get:
             summary: 'Retrieve Project Checklist'
             operationId: getProjectChecklist
