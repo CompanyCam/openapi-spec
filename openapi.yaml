@@ -1613,7 +1613,7 @@ paths:
                             schema:
                                 type: array
                                 items:
-                                    $ref: '#/components/schemas/Checklists'
+                                    $ref: '#/components/schemas/Checklist'
                 '400':
                     description: 'Bad Request'
                     content:
@@ -1661,7 +1661,6 @@ paths:
                                 checklist_template_id:
                                     type: string
                                     format: id
-                                    required: true
             responses:
                 '201':
                     description: 'The created project checklist'
