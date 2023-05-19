@@ -5,7 +5,7 @@ info:
 servers:
   - url: 'https://api.companycam.com/v2'
 paths:
-   /checklists:
+    /checklists:
         get:
             summary: 'List All Checklists'
             operationId: listChecklists
