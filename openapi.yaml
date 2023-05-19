@@ -5,6 +5,60 @@ info:
 servers:
   - url: 'https://api.companycam.com/v2'
 paths:
+    /checklists:
+        get:
+            summary: 'List All Checklists'
+            operationId: listChecklists
+            tags:
+              - Checklists
+            parameters:
+              - name: page
+                in: query
+                schema:
+                    type: integer
+                    format: int32
+              - name: per_page
+                in: query
+                schema:
+                    type: integer
+                    format: int32
+              - name: completed
+                in: query
+                schema:
+                    type: boolean
+            responses:
+                '200':
+                    description: 'List of checklists sorted by last updated'
+                    content:
+                        application/json:
+                            schema:
+                                type: array
+                                items:
+                                    $ref: '#/components/schemas/Checklist'
+                '400':
+                    description: 'Bad Request'
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/Error'
+                            example: 
+                                errors: ["Bad Request"]
+                '404':
+                    description: 'Not found'
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/Error'
+                            example: 
+                                errors: ["Record not found"]
+                '500':
+                    description: Unexpected error
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/Error'
+                            example: 
+                                errors: ["An unexpected error occured"]
     /company:
         get:
             summary: 'Retrieve Company'
