@@ -3239,7 +3239,7 @@ components:
           description: "The coordinates where the Photo was captured"
           items: 
             $ref: '#/components/schemas/Coordinate'
-        urls:
+        uris:
           type: array
           description: "A list of URIs for the different size variants of the photo."
           items: 
