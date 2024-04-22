@@ -851,6 +851,10 @@ paths:
                                             type: integer
                                             format: int32
                                             example: 1637770053
+                                        tags:
+                                            type: array
+                                            items:
+                                                type: string
             responses:
                 '200':
                     description: 'The created project photo'
@@ -1062,7 +1066,7 @@ paths:
                             properties:
                                 notepad:
                                     type: string
-                                    example: "An updated dexcription of the project"
+                                    example: "An updated description of the project"
             responses:
                 '201':
                     description: 'The project notepad'
@@ -3235,7 +3239,7 @@ components:
           description: "The coordinates where the Photo was captured"
           items: 
             $ref: '#/components/schemas/Coordinate'
-        urls:
+        uris:
           type: array
           description: "A list of URIs for the different size variants of the photo."
           items: 
