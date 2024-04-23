@@ -188,6 +188,13 @@ paths:
             operationId: createUser
             tags:
                 - Users
+            parameters:
+                - name: X_COMPANYCAM_USER
+                  in: header
+                  description: Email of CompanyCam user to be designated as the creator
+                  required: false
+                  schema:
+                      type: string
             requestBody:
                 required: true
                 content:
@@ -283,6 +290,12 @@ paths:
         put:
             summary: "Update User"
             parameters:
+                - name: X_COMPANYCAM_USER
+                  in: header
+                  description: Email of CompanyCam user to be designated as the editor
+                  required: false
+                  schema:
+                      type: string
                 - name: id
                   in: path
                   description: ID of the User
@@ -343,6 +356,12 @@ paths:
         delete:
             summary: "Delete User"
             parameters:
+                - name: X_COMPANYCAM_USER
+                  in: header
+                  description: Email of CompanyCam user to be designated as the editor
+                  required: false
+                  schema:
+                      type: string
                 - name: id
                   in: path
                   description: ID of the User
@@ -446,6 +465,13 @@ paths:
             operationId: createProject
             tags:
                 - Projects
+            parameters:
+                - name: X_COMPANYCAM_USER
+                  in: header
+                  description: Email of CompanyCam user to be designated as the creator
+                  required: false
+                  schema:
+                      type: string
             requestBody:
                 required: true
                 content:
@@ -823,6 +849,12 @@ paths:
             tags:
                 - Projects
             parameters:
+                - name: X_COMPANYCAM_USER
+                  in: header
+                  description: Email of CompanyCam user to be designated as the creator
+                  required: false
+                  schema:
+                      type: string
                 - name: project_id
                   in: path
                   description: ID of the Project
@@ -952,6 +984,12 @@ paths:
             tags:
                 - Projects
             parameters:
+                - name: X_COMPANYCAM_USER
+                  in: header
+                  description: Email of CompanyCam user to be designated as the assigner
+                  required: false
+                  schema:
+                      type: string
                 - name: project_id
                   in: path
                   description: ID of the Project
@@ -1003,6 +1041,12 @@ paths:
             tags:
                 - Projects
             parameters:
+                - name: X_COMPANYCAM_USER
+                  in: header
+                  description: Email of CompanyCam user to be designated as the unassigner
+                  required: false
+                  schema:
+                      type: string
                 - name: project_id
                   in: path
                   description: ID of the Project
@@ -1220,6 +1264,12 @@ paths:
             tags:
                 - Projects
             parameters:
+                - name: X_COMPANYCAM_USER
+                  in: header
+                  description: Email of CompanyCam user to be designated as the inviter
+                  required: false
+                  schema:
+                      type: string
                 - name: project_id
                   in: path
                   description: ID of the Project
@@ -1484,6 +1534,12 @@ paths:
             tags:
                 - Projects
             parameters:
+                - name: X_COMPANYCAM_USER
+                  in: header
+                  description: Email of CompanyCam user to be designated as the creator
+                  required: false
+                  schema:
+                      type: string
                 - name: project_id
                   in: path
                   description: ID of the Project
@@ -1601,6 +1657,12 @@ paths:
             tags:
                 - Projects
             parameters:
+                - name: X_COMPANYCAM_USER
+                  in: header
+                  description: Email of CompanyCam user to be designated as the commenter
+                  required: false
+                  schema:
+                      type: string
                 - name: project_id
                   in: path
                   description: ID of the Project
@@ -1703,6 +1765,12 @@ paths:
             tags:
                 - Projects
             parameters:
+                - name: X_COMPANYCAM_USER
+                  in: header
+                  description: Email of CompanyCam user to be designated as the creator
+                  required: false
+                  schema:
+                      type: string
                 - name: project_id
                   in: path
                   description: ID of the Project
@@ -1989,6 +2057,12 @@ paths:
         delete:
             summary: "Delete Photo"
             parameters:
+                - name: X_COMPANYCAM_USER
+                  in: header
+                  description: Email of CompanyCam user to be designated as the editor
+                  required: false
+                  schema:
+                      type: string
                 - name: id
                   in: path
                   description: ID of the Photo
@@ -2201,6 +2275,12 @@ paths:
             tags:
                 - Photos
             parameters:
+                - name: X_COMPANYCAM_USER
+                  in: header
+                  description: Email of CompanyCam user to be designated as the commenter
+                  required: false
+                  schema:
+                      type: string
                 - name: photo_id
                   in: path
                   description: ID of the Photo
@@ -2581,6 +2661,13 @@ paths:
             operationId: createGroup
             tags:
                 - Groups
+            parameters:
+                - name: X_COMPANYCAM_USER
+                  in: header
+                  description: Email of CompanyCam user to be designated as the creator
+                  required: false
+                  schema:
+                      type: string
             requestBody:
                 required: true
                 content:
@@ -3395,8 +3482,11 @@ components:
                     type: string
                 uri:
                     type: string
+                url:
+                    type: string
             example:
                 type: "original"
+                uri: "https://static.companycam.com/VuS0rPvrnNA1490797262.jpg"
                 url: "https://static.companycam.com/VuS0rPvrnNA1490797262.jpg"
         Address:
             type: object
