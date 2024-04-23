@@ -1,0 +1,5 @@
+{
+    "yaml.schemas": {
+        "openapi:v3": "file:///Users/allysegroover/code/openapi-spec/openapi.yaml"
+    }
+}
