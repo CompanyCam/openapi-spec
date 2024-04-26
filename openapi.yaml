@@ -212,7 +212,7 @@ paths:
                                 password:
                                     type: string
             responses:
-                "200":
+                "201":
                     description: "The created user"
                     content:
                         application/json:
@@ -890,7 +890,7 @@ paths:
                                             items:
                                                 type: string
             responses:
-                "200":
+                "201":
                     description: "The created project photo"
                     content:
                         application/json:
@@ -1394,7 +1394,7 @@ paths:
                                                 type: string
             responses:
                 "201":
-                    description: "The created project label"
+                    description: "The created project label(s)"
                     content:
                         application/json:
                             schema:
@@ -2183,7 +2183,7 @@ paths:
                                         type: string
             responses:
                 "201":
-                    description: "The created project tag"
+                    description: "The created photo tag(s)"
                     content:
                         application/json:
                             schema:
@@ -2398,7 +2398,7 @@ paths:
                                             type: string
             responses:
                 "201":
-                    description: "The created project tag"
+                    description: "The created photo tag(s)"
                     content:
                         application/json:
                             schema:
