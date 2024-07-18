@@ -3563,6 +3563,163 @@ components:
                     type: boolean
                     description: "Flag indicating wether the Checklist is still being created or not"
                     example: false
+                sectionless_tasks:
+                    type: array
+                    description: "A collection of tasks that are not associated with a section"
+                    items:
+                        $ref: "#/components/schemas/Task"
+                sections:
+                    type: array
+                    description: "A collection of sections"
+                    items:
+                        $ref: "#/components/schemas/ChecklistSection"
+        ChecklistSection:
+            type: object
+            properties:
+                id:
+                    type: string
+                    description: "The unique ID for the ChecklistSection"
+                    example: "4782987471"
+                todo_list_id:
+                    type: string
+                    description: "A unique identifier for the Checklist the ChecklistSection belongs to"
+                    example: "8292212"
+                creator_id:
+                    type: string
+                    description: "A unique identifier of the creator of the ChecklistSection"
+                    example: "314"
+                creator_type:
+                    type: string
+                    description: "The type of the creator of the ChecklistSection"
+                    example: "User"
+                creator_name:
+                    type: string
+                    description: "The name of the creator of the ChecklistSection"
+                    example: "314"
+                title:
+                    type: string
+                    description: "The title of the ChecklistSection"
+                    example: "Section #1"
+                position:
+                    type: integer
+                    description: "The position for the ChecklistSection within the Checklist"
+                    example: "0"
+                tasks:
+                    type: array
+                    description: "A collection of tasks associated to a ChecklistSection"
+                    items:
+                        $ref: "#/components/schemas/Task"
+        Task:
+            type: object
+            properties:
+                id:
+                    type: string
+                    description: "The unique ID for the Task"
+                    example: "4782987471"
+                completed_at:
+                    type: integer
+                    format: int32
+                    description: "Timestamp when the Task was marked completed."
+                    example: 1152230608
+                completed_by_id:
+                    type: string
+                    description: "The unique ID for entity that completed the Task"
+                    example: "14365"
+                completed_by_type:
+                    type: string
+                    description: "The type of the entity that marked the Task as completed"
+                    example: "User"
+                created_at:
+                    type: integer
+                    format: int32
+                    description: "Timestamp when the Task was created on the server."
+                    example: 1152230608
+                creator_id:
+                    type: string
+                    description: "A unique identifier of the creator of the Task"
+                    example: "314"
+                creator_type:
+                    type: string
+                    description: "The type of the creator of the Task"
+                    example: "User"
+                details:
+                    type: string
+                    description: "The details of a Task"
+                    example: "Check the roof for leaks"
+                photo_capture_required:
+                    type: boolean
+                    description: "Flag indicating whether a photo is required to complete the Task"
+                    example: true
+                position:
+                    type: integer
+                    description: "The position for the Task within its ChecklistSection or Checklist"
+                    example: 2
+                todo_list_id:
+                    type: string
+                    description: "A unique identifier for the Checklist the Task belongs to"
+                    example: "4782987471"
+                todo_list_section_id:
+                    type: string
+                    description: "A unique identifier for the ChecklistSection the Task belongs to"
+                    nullable: true
+                    example: "12663"
+                title:
+                    type: string
+                    description: "The title of the Task"
+                    example: "Check the roof"
+                updated_at:
+                    type: integer
+                    format: int32
+                    description: "Timestamp when the Checklist was last updated on the server."
+                    example: 1152230608
+                sub_tasks:
+                    type: array
+                    description: "A collection of sub-tasks associated to a Task"
+                    items:
+                        $ref: "#/components/schemas/SubTask"
+                photos:
+                    type: array
+                    description: "A collection of photos associated to a Task"
+                    items:
+                        $ref: "#/components/schemas/Photo"
+        SubTask:
+            type: object
+            properties:
+                id:
+                    type: string
+                    description: "The unique ID for the Task"
+                    example: "4782987471"
+                label:
+                    type: string
+                    description: "The title of the Task"
+                    example: "Check the roof"                    
+                answer_type:
+                    type: string
+                    description: "The type of answer expected for the SubTask"
+                    enum: ["open_text", "multiple_choice", "yes_no"]
+                    example: "open_text"
+                answer_choices:
+                    type: array
+                    description: "The index from the answer_options array that were selected as answers"
+                    example: [0, 2]
+                answer_options:
+                    type: array
+                    description: "A collection of answer options for the SubTask"
+                    items:
+                        type: string
+                        example: ["Yes", "No", "Maybe"]
+                position:
+                    type: integer
+                    description: "The position for the SubTask within its Task"
+                    example: 2
+                task_id:
+                    type: string
+                    description: "A unique identifier for the Task the SubTask belongs to"
+                    example: "4782987471"
+                answer_text:
+                    type: string
+                    description: "The answer text for the SubTask when the type is open_text"
+                    example: "It was a pretty ok task"
         ChecklistTemplate:
             type: object
             properties:
