@@ -885,6 +885,9 @@ paths:
                                             type: integer
                                             format: int32
                                             example: 1637770053
+                                        description:
+                                            description: "A description of the photo"
+                                            type: string
                                         tags:
                                             type: array
                                             items:
@@ -3335,6 +3338,10 @@ components:
                     type: string
                     description: "The MD5 hash of the photo"
                     example: "00ab337b7399151e5d4aa3bd4226e8dd"
+                description:
+                    type: string
+                    description: "A description of the photo"
+                    example: "The front of the house"
                 internal:
                     type: boolean
                     description: "Indicates whether the photo is for internal use only and should not be used in marketing or other public materials"
