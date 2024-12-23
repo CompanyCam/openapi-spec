@@ -2332,7 +2332,63 @@ paths:
                             schema:
                                 $ref: "#/components/schemas/Error"
                             example:
-                                errors: ["An unexpected error occured"]
+                                errors: ["An unexpected error occurred"]
+    /photos/{photo_id}/description:
+        post:
+            summary: "Update Photo Description"
+            operationId: updatePhotoDescription
+            tags:
+                - Photos
+            parameters:
+                - name: photo_id
+                  in: path
+                  description: ID of the Photo
+                  required: true
+                  schema:
+                      type: string
+                      format: id
+            requestBody:
+                required: true
+                content:
+                    "application/json":
+                        schema:
+                            properties:
+                                photo:
+                                    type: object
+                                    properties:
+                                        description:
+                                            type: string
+            responses:
+                "201":
+                    description: "The updated photo description"
+                    content:
+                        "application/json":
+                            schema:
+                                $ref: "#/components/schemas/Photo"
+                "400":
+                    description: "Bad Request"
+                    content:
+                        application/json:
+                            schema:
+                                $ref: "#/components/schemas/Error"
+                            example:
+                                errors: ["Bad Request"]
+                "404":
+                    description: "Not found"
+                    content:
+                        application/json:
+                            schema:
+                                $ref: "#/components/schemas/Error"
+                            example:
+                                errors: ["Record not found"]
+                "500":
+                    description: Unexpected error
+                    content:
+                        application/json:
+                            schema:
+                                $ref: "#/components/schemas/Error"
+                            example:
+                                errors: ["An unexpected error occurred"]
     /tags:
         get:
             summary: "List All Tags"
