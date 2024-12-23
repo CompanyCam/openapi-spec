@@ -706,7 +706,61 @@ paths:
                             schema:
                                 $ref: "#/components/schemas/Error"
                             example:
-                                errors: ["An unexpected error occured"]
+                                errors: ["An unexpected error occurred"]
+    /projects/{id}/archive:
+        patch:
+            summary: "Archive Project"
+            parameters:
+                - name: id
+                  in: path
+                  description: ID of the Project
+                  required: true
+                  schema:
+                      type: string
+                      format: id
+            operationId: archiveProject
+            tags:
+                - Projects
+                - Archive
+            responses:
+                "200":
+                    description: "Details about the project"
+                    content:
+                        application/json:
+                            schema:
+                                $ref: "#/components/schemas/Project"
+                "400":
+                    description: "Bad Request"
+                    content:
+                        application/json:
+                            schema:
+                                $ref: "#/components/schemas/Error"
+                            example:
+                                errors: ["Bad Request"]
+                "403":
+                    description: "Forbidden"
+                    content:
+                        application/json:
+                            schema:
+                                $ref: "#/components/schemas/Error"
+                            example:
+                                errors: ["Forbidden"]
+                "404":
+                    description: "Not found"
+                    content:
+                        application/json:
+                            schema:
+                                $ref: "#/components/schemas/Error"
+                            example:
+                                errors: ["Record not found"]
+                "500":
+                    description: Unexpected error
+                    content:
+                        application/json:
+                            schema:
+                                $ref: "#/components/schemas/Error"
+                            example:
+                                errors: ["An unexpected error occurred"]
     /projects/{id}/restore:
         put:
             summary: "Restore Project"
@@ -3269,6 +3323,10 @@ components:
                     description: "Indicates the status of the Project."
                     enum: ["active", "deleted"]
                     example: "active"
+                archived:
+                    type: boolean
+                    description: "Indicates whether the Project is archived"
+                    example: false
                 name:
                     type: string
                     description: "The title of the Project"
