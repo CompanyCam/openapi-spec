@@ -706,7 +706,60 @@ paths:
                             schema:
                                 $ref: "#/components/schemas/Error"
                             example:
-                                errors: ["An unexpected error occured"]
+                                errors: ["An unexpected error occurred"]
+    /projects/{id}/archive:
+        patch:
+            summary: "Archive Project"
+            parameters:
+                - name: id
+                  in: path
+                  description: ID of the Project
+                  required: true
+                  schema:
+                      type: string
+                      format: id
+            operationId: archiveProject
+            tags:
+                - Projects
+            responses:
+                "200":
+                    description: "Details about the project"
+                    content:
+                        application/json:
+                            schema:
+                                $ref: "#/components/schemas/Project"
+                "400":
+                    description: "Bad Request"
+                    content:
+                        application/json:
+                            schema:
+                                $ref: "#/components/schemas/Error"
+                            example:
+                                errors: ["Bad Request"]
+                "403":
+                    description: "Forbidden"
+                    content:
+                        application/json:
+                            schema:
+                                $ref: "#/components/schemas/Error"
+                            example:
+                                errors: ["Forbidden"]
+                "404":
+                    description: "Not found"
+                    content:
+                        application/json:
+                            schema:
+                                $ref: "#/components/schemas/Error"
+                            example:
+                                errors: ["Record not found"]
+                "500":
+                    description: Unexpected error
+                    content:
+                        application/json:
+                            schema:
+                                $ref: "#/components/schemas/Error"
+                            example:
+                                errors: ["An unexpected error occurred"]
     /projects/{id}/restore:
         put:
             summary: "Restore Project"
@@ -885,6 +938,9 @@ paths:
                                             type: integer
                                             format: int32
                                             example: 1637770053
+                                        description:
+                                            description: "A description of the photo"
+                                            type: string
                                         tags:
                                             type: array
                                             items:
@@ -2329,7 +2385,63 @@ paths:
                             schema:
                                 $ref: "#/components/schemas/Error"
                             example:
-                                errors: ["An unexpected error occured"]
+                                errors: ["An unexpected error occurred"]
+    /photos/{photo_id}/description:
+        post:
+            summary: "Update Photo Description"
+            operationId: updatePhotoDescription
+            tags:
+                - Photos
+            parameters:
+                - name: photo_id
+                  in: path
+                  description: ID of the Photo
+                  required: true
+                  schema:
+                      type: string
+                      format: id
+            requestBody:
+                required: true
+                content:
+                    "application/json":
+                        schema:
+                            properties:
+                                photo:
+                                    type: object
+                                    properties:
+                                        description:
+                                            type: string
+            responses:
+                "201":
+                    description: "The updated photo"
+                    content:
+                        "application/json":
+                            schema:
+                                $ref: "#/components/schemas/Photo"
+                "400":
+                    description: "Bad Request"
+                    content:
+                        application/json:
+                            schema:
+                                $ref: "#/components/schemas/Error"
+                            example:
+                                errors: ["Bad Request"]
+                "404":
+                    description: "Not found"
+                    content:
+                        application/json:
+                            schema:
+                                $ref: "#/components/schemas/Error"
+                            example:
+                                errors: ["Record not found"]
+                "500":
+                    description: Unexpected error
+                    content:
+                        application/json:
+                            schema:
+                                $ref: "#/components/schemas/Error"
+                            example:
+                                errors: ["An unexpected error occurred"]
     /tags:
         get:
             summary: "List All Tags"
@@ -3210,6 +3322,10 @@ components:
                     description: "Indicates the status of the Project."
                     enum: ["active", "deleted"]
                     example: "active"
+                archived:
+                    type: boolean
+                    description: "Indicates whether the Project is archived"
+                    example: false
                 name:
                     type: string
                     description: "The title of the Project"
@@ -3335,6 +3451,10 @@ components:
                     type: string
                     description: "The MD5 hash of the photo"
                     example: "00ab337b7399151e5d4aa3bd4226e8dd"
+                description:
+                    type: string
+                    description: "A description of the photo"
+                    example: "The front of the house"
                 internal:
                     type: boolean
                     description: "Indicates whether the photo is for internal use only and should not be used in marketing or other public materials"
@@ -3692,7 +3812,7 @@ components:
                 label:
                     type: string
                     description: "The title of the Task"
-                    example: "Check the roof"                    
+                    example: "Check the roof"
                 answer_type:
                     type: string
                     description: "The type of answer expected for the SubTask"
