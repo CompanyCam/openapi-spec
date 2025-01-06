@@ -721,7 +721,6 @@ paths:
             operationId: archiveProject
             tags:
                 - Projects
-                - Archive
             responses:
                 "200":
                     description: "Details about the project"
@@ -3813,7 +3812,7 @@ components:
                 label:
                     type: string
                     description: "The title of the Task"
-                    example: "Check the roof"                    
+                    example: "Check the roof"
                 answer_type:
                     type: string
                     description: "The type of answer expected for the SubTask"
