@@ -2413,7 +2413,7 @@ paths:
                                             type: string
             responses:
                 "201":
-                    description: "The updated photo description"
+                    description: "The updated photo"
                     content:
                         "application/json":
                             schema:
