@@ -3893,10 +3893,10 @@ components:
             properties:
                 type:
                     type: string
-                    nullable: true
                     example: "JobNimbus"
                 relation_id:
                     type: string
+                    nullable: true
                     example: "123"
         Comment:
             type: object
