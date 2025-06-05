@@ -1617,7 +1617,7 @@ paths:
                                             example: "test.txt"
                                         attachment:
                                             type: string
-                                            description: base64 encoded file contents
+                                            description: Base64 encoded file contents with 30 MB limit
                                             example: "VGVzdAo="
             responses:
                 "201":
