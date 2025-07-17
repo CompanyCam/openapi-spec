@@ -2386,7 +2386,7 @@ paths:
                                 $ref: "#/components/schemas/Error"
                             example:
                                 errors: ["An unexpected error occurred"]
-    /photos/{photo_id}/description:
+    /photos/{photo_id}/descriptions:
         post:
             summary: "Update Photo Description"
             operationId: updatePhotoDescription
