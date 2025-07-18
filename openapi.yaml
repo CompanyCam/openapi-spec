@@ -2405,12 +2405,10 @@ paths:
                 content:
                     "application/json":
                         schema:
+                            type: object
                             properties:
-                                photo:
-                                    type: object
-                                    properties:
-                                        description:
-                                            type: string
+                                description:
+                                    type: string
             responses:
                 "201":
                     description: "The updated photo"
