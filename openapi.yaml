@@ -189,7 +189,7 @@ paths:
             tags:
                 - Users
             parameters:
-                - name: X_COMPANYCAM_USER
+                - name: X-CompanyCam-User
                   in: header
                   description: Email of CompanyCam user to be designated as the creator
                   required: false
@@ -290,7 +290,7 @@ paths:
         put:
             summary: "Update User"
             parameters:
-                - name: X_COMPANYCAM_USER
+                - name: X-CompanyCam-User
                   in: header
                   description: Email of CompanyCam user to be designated as the editor
                   required: false
@@ -356,7 +356,7 @@ paths:
         delete:
             summary: "Delete User"
             parameters:
-                - name: X_COMPANYCAM_USER
+                - name: X-CompanyCam-User
                   in: header
                   description: Email of CompanyCam user to be designated as the editor
                   required: false
@@ -466,7 +466,7 @@ paths:
             tags:
                 - Projects
             parameters:
-                - name: X_COMPANYCAM_USER
+                - name: X-CompanyCam-User
                   in: header
                   description: Email of CompanyCam user to be designated as the creator
                   required: false
@@ -902,7 +902,7 @@ paths:
             tags:
                 - Projects
             parameters:
-                - name: X_COMPANYCAM_USER
+                - name: X-CompanyCam-User
                   in: header
                   description: Email of CompanyCam user to be designated as the creator
                   required: false
@@ -1040,7 +1040,7 @@ paths:
             tags:
                 - Projects
             parameters:
-                - name: X_COMPANYCAM_USER
+                - name: X-CompanyCam-User
                   in: header
                   description: Email of CompanyCam user to be designated as the assigner
                   required: false
@@ -1097,7 +1097,7 @@ paths:
             tags:
                 - Projects
             parameters:
-                - name: X_COMPANYCAM_USER
+                - name: X-CompanyCam-User
                   in: header
                   description: Email of CompanyCam user to be designated as the unassigner
                   required: false
@@ -1320,7 +1320,7 @@ paths:
             tags:
                 - Projects
             parameters:
-                - name: X_COMPANYCAM_USER
+                - name: X-CompanyCam-User
                   in: header
                   description: Email of CompanyCam user to be designated as the inviter
                   required: false
@@ -1590,7 +1590,7 @@ paths:
             tags:
                 - Projects
             parameters:
-                - name: X_COMPANYCAM_USER
+                - name: X-CompanyCam-User
                   in: header
                   description: Email of CompanyCam user to be designated as the creator
                   required: false
@@ -1713,7 +1713,7 @@ paths:
             tags:
                 - Projects
             parameters:
-                - name: X_COMPANYCAM_USER
+                - name: X-CompanyCam-User
                   in: header
                   description: Email of CompanyCam user to be designated as the commenter
                   required: false
@@ -1821,7 +1821,7 @@ paths:
             tags:
                 - Projects
             parameters:
-                - name: X_COMPANYCAM_USER
+                - name: X-CompanyCam-User
                   in: header
                   description: Email of CompanyCam user to be designated as the creator
                   required: false
@@ -2113,7 +2113,7 @@ paths:
         delete:
             summary: "Delete Photo"
             parameters:
-                - name: X_COMPANYCAM_USER
+                - name: X-CompanyCam-User
                   in: header
                   description: Email of CompanyCam user to be designated as the editor
                   required: false
@@ -2331,7 +2331,7 @@ paths:
             tags:
                 - Photos
             parameters:
-                - name: X_COMPANYCAM_USER
+                - name: X-CompanyCam-User
                   in: header
                   description: Email of CompanyCam user to be designated as the commenter
                   required: false
@@ -2772,7 +2772,7 @@ paths:
             tags:
                 - Groups
             parameters:
-                - name: X_COMPANYCAM_USER
+                - name: X-CompanyCam-User
                   in: header
                   description: Email of CompanyCam user to be designated as the creator
                   required: false
