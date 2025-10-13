@@ -214,6 +214,9 @@ paths:
                                             type: string
                                         password:
                                             type: string
+                                        user_role:
+                                            type: string
+                                            description: "Role for the user. Allowed values: standard (default), restricted"
             responses:
                 "201":
                     description: "The created user"
