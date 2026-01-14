@@ -1973,6 +1973,14 @@ paths:
                   description: "A unix timestamp to return photos modified on or before the provided value"
                   schema:
                       type: string
+                - name: project_ids
+                  in: query
+                  description: "Filter results to include photos from one of these project IDs"
+                  schema:
+                      type: array
+                      items:
+                          type: integer
+                          format: int64
                 - name: user_ids
                   in: query
                   description: "Filter results to include photos captured by one of these user IDs"
@@ -3474,6 +3482,11 @@ components:
                             "duplicate",
                         ]
                     example: "processed"
+                status:
+                    type: string
+                    description: "The status of the Photo"
+                    enum: ["active", "deleted"]
+                    example: "active"
                 coordinates:
                     type: array
                     description: "The coordinates where the Photo was captured"
