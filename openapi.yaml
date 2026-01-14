@@ -1941,14 +1941,28 @@ paths:
             parameters:
                 - name: page
                   in: query
+                  description: "Page number for offset-based pagination. Cannot be used with cursor pagination (after/before)"
                   schema:
                       type: integer
                       format: int32
                 - name: per_page
                   in: query
+                  description: "Number of results per page. Default 50, maximum 100"
                   schema:
                       type: integer
                       format: int32
+                      default: 50
+                      maximum: 100
+                - name: after
+                  in: query
+                  description: "Cursor for forward pagination. Returns results after this cursor position. Cannot be used with 'before' or 'page'"
+                  schema:
+                      type: string
+                - name: before
+                  in: query
+                  description: "Cursor for backward pagination. Returns results before this cursor position. Cannot be used with 'after' or 'page'"
+                  schema:
+                      type: string
                 - name: start_date
                   in: query
                   description: "A unix timestamp to return photos modified on or after the provided value"
@@ -1985,7 +1999,26 @@ paths:
                           format: int64
             responses:
                 "200":
-                    description: "List of projects sorted by most recent activity first"
+                    description: "List of photos sorted by captured date descending"
+                    headers:
+                        X-Next-Cursor:
+                            description: "Cursor to fetch the next page of results. Empty if no more results"
+                            schema:
+                                type: string
+                        X-Prev-Cursor:
+                            description: "Cursor to fetch the previous page of results. Empty if no previous results"
+                            schema:
+                                type: string
+                        X-Has-Next:
+                            description: "Indicates whether more results exist after the current page"
+                            schema:
+                                type: string
+                                enum: ["true", "false"]
+                        X-Has-Prev:
+                            description: "Indicates whether results exist before the current page"
+                            schema:
+                                type: string
+                                enum: ["true", "false"]
                     content:
                         application/json:
                             schema:
@@ -1993,13 +2026,20 @@ paths:
                                 items:
                                     $ref: "#/components/schemas/Photo"
                 "400":
-                    description: "Bad Request"
+                    description: "Bad Request. Returned when both 'after' and 'before' cursors are provided, or when cursor pagination is mixed with offset pagination."
                     content:
                         application/json:
                             schema:
                                 $ref: "#/components/schemas/Error"
-                            example:
-                                errors: ["Bad Request"]
+                            examples:
+                                both_cursors:
+                                    summary: Both cursors provided
+                                    value:
+                                        errors: ["Cannot use both 'after' and 'before' parameters"]
+                                mixed_pagination:
+                                    summary: Mixed pagination types
+                                    value:
+                                        errors: ["Cannot use cursor pagination with offset pagination"]
                 "404":
                     description: "Not found"
                     content:
