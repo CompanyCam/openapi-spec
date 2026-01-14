@@ -1965,12 +1965,12 @@ paths:
                       type: string
                 - name: start_date
                   in: query
-                  description: "A unix timestamp to return photos modified on or after the provided value"
+                  description: "A unix timestamp to return photos captured on or after the provided value"
                   schema:
                       type: string
                 - name: end_date
                   in: query
-                  description: "A unix timestamp to return photos modified on or before the provided value"
+                  description: "A unix timestamp to return photos captured on or before the provided value"
                   schema:
                       type: string
                 - name: project_ids
@@ -1991,7 +1991,7 @@ paths:
                           format: int64
                 - name: group_ids
                   in: query
-                  description: "Filter results to include photos captured by one of these group IDs"
+                  description: "Filter results to include photos captured by users in one of these group IDs"
                   schema:
                       type: array
                       items:
@@ -1999,7 +1999,7 @@ paths:
                           format: int64
                 - name: tag_ids
                   in: query
-                  description: "Filter results to include photos captured by one of these tag IDs"
+                  description: "Filter results to include photos with one of these tag IDs"
                   schema:
                       type: array
                       items:
@@ -3488,10 +3488,8 @@ components:
                     enum: ["active", "deleted"]
                     example: "active"
                 coordinates:
-                    type: array
+                    $ref: "#/components/schemas/Coordinate"
                     description: "The coordinates where the Photo was captured"
-                    items:
-                        $ref: "#/components/schemas/Coordinate"
                 uris:
                     type: array
                     description: "A list of URIs for the different size variants of the photo."
