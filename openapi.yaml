@@ -1955,12 +1955,12 @@ paths:
                       maximum: 100
                 - name: after
                   in: query
-                  description: "Cursor for forward pagination. Returns results after this cursor position. Cannot be used with 'before' or 'page'"
+                  description: "Cursor for forward pagination. Comes from X-Next-Cursor header value. Returns results after this cursor position. Cannot be used with 'before' or 'page'"
                   schema:
                       type: string
                 - name: before
                   in: query
-                  description: "Cursor for backward pagination. Returns results before this cursor position. Cannot be used with 'after' or 'page'"
+                  description: "Cursor for backward pagination. Comes from X-Prev-Cursor header value. Returns results before this cursor position. Cannot be used with 'after' or 'page'"
                   schema:
                       type: string
                 - name: start_date
@@ -2010,11 +2010,11 @@ paths:
                     description: "List of photos sorted by captured date descending"
                     headers:
                         X-Next-Cursor:
-                            description: "Cursor to fetch the next page of results. Empty if no more results"
+                            description: "Cursor that can be used as an 'after' param to fetch the next page of results. Empty if no more results"
                             schema:
                                 type: string
                         X-Prev-Cursor:
-                            description: "Cursor to fetch the previous page of results. Empty if no previous results"
+                            description: "Cursor that can be used as a 'before' param to fetch the previous page of results. Empty if no previous results"
                             schema:
                                 type: string
                         X-Has-Next:
