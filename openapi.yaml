@@ -1941,7 +1941,7 @@ paths:
             parameters:
                 - name: page
                   in: query
-                  description: "Page number for offset-based pagination. Cannot be used with cursor pagination (after/before)"
+                  description: "Page number for offset-based pagination. Cannot be used with cursor pagination (after/before params)"
                   schema:
                       type: integer
                       format: int32
