@@ -3488,8 +3488,9 @@ components:
                     enum: ["active", "deleted"]
                     example: "active"
                 coordinates:
-                    $ref: "#/components/schemas/Coordinate"
                     description: "The coordinates where the Photo was captured"
+                    allOf:
+                        - $ref: "#/components/schemas/Coordinate"
                 uris:
                     type: array
                     description: "A list of URIs for the different size variants of the photo."
