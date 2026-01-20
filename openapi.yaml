@@ -3381,6 +3381,7 @@ components:
                     $ref: "#/components/schemas/ProjectContactResponse"
                 notepad:
                     type: string
+                    nullable: true
                     description: "Notes or description of the project"
                     example: "Be sure to let the client know when the work is finished"
                 created_at:
@@ -3435,10 +3436,7 @@ components:
                         ]
                     example: "processed"
                 coordinates:
-                    type: array
-                    description: "The coordinates where the Photo was captured"
-                    items:
-                        $ref: "#/components/schemas/Coordinate"
+                    $ref: "#/components/schemas/Coordinate"
                 uris:
                     type: array
                     description: "A list of URIs for the different size variants of the photo."
@@ -3455,6 +3453,7 @@ components:
                     type: string
                     description: "The MD5 hash of the photo"
                     example: "00ab337b7399151e5d4aa3bd4226e8dd"
+                    nullable: true
                 description:
                     type: string
                     description: "A description of the photo"
@@ -3465,6 +3464,7 @@ components:
                     example: false
                 photo_url:
                     type: string
+                    format: uri
                     description: "The link to the photo in the web app"
                     example: "https://app.companycam.com/photos/8675309"
                 captured_at:
@@ -3606,8 +3606,10 @@ components:
                     type: string
                 uri:
                     type: string
+                    format: uri
                 url:
                     type: string
+                    format: uri
             example:
                 type: "original"
                 uri: "https://static.companycam.com/VuS0rPvrnNA1490797262.jpg"
@@ -3892,13 +3894,13 @@ components:
             type: object
             required:
                 - type
-                - relation_id
             properties:
                 type:
                     type: string
                     example: "JobNimbus"
                 relation_id:
                     type: string
+                    nullable: true
                     example: "123"
         Comment:
             type: object
@@ -4001,6 +4003,7 @@ components:
                     example: 1621857746
         ProjectContactResponse:
             type: object
+            nullable: true
             properties:
                 id:
                     type: string
@@ -4016,10 +4019,12 @@ components:
                     example: "Joe Smith"
                 email:
                     type: string
+                    nullable: true
                     description: "The email of the contact"
                     example: "joe.smith@companycam.com"
                 phone_number:
                     type: string
+                    nullable: true
                     description: "The phone of the contact"
                     example: "402-555-1212"
                 created_at:
@@ -4051,10 +4056,12 @@ components:
                     example: "Joe Smith"
                 email:
                     type: string
+                    nullable: true
                     description: "The email of the contact"
                     example: "joe.smith@companycam.com"
                 phone_number:
                     type: string
+                    nullable: true
                     description: "The phone of the contact"
                     example: "402-555-1212"
         ProjectNotepad:
