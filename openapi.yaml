@@ -2034,7 +2034,7 @@ paths:
                                 items:
                                     $ref: "#/components/schemas/Photo"
                 "400":
-                    description: "Bad Request. Returned when both 'after' and 'before' cursors are provided, or when cursor pagination is mixed with offset pagination."
+                    description: "Bad Request"
                     content:
                         application/json:
                             schema:
