@@ -827,22 +827,36 @@ paths:
                       format: id
                 - name: page
                   in: query
+                  description: "Page number for offset-based pagination. Cannot be used with cursor pagination (after/before params)"
                   schema:
                       type: integer
                       format: int32
                 - name: per_page
                   in: query
+                  description: "Number of results per page. Default 50, maximum 100"
                   schema:
                       type: integer
                       format: int32
+                      default: 50
+                      maximum: 100
+                - name: after
+                  in: query
+                  description: "Cursor for forward pagination. Comes from X-Next-Cursor header value. Returns results after this cursor position. Cannot be used with 'before' or 'page'"
+                  schema:
+                      type: string
+                - name: before
+                  in: query
+                  description: "Cursor for backward pagination. Comes from X-Prev-Cursor header value. Returns results before this cursor position. Cannot be used with 'after' or 'page'"
+                  schema:
+                      type: string
                 - name: start_date
                   in: query
-                  description: "A unix timestamp to return photos modified on or after the provided value"
+                  description: "A unix timestamp to return photos captured on or after the provided value"
                   schema:
                       type: string
                 - name: end_date
                   in: query
-                  description: "A unix timestamp to return photos modified on or before the provided value"
+                  description: "A unix timestamp to return photos captured on or before the provided value"
                   schema:
                       type: string
                 - name: user_ids
@@ -855,7 +869,7 @@ paths:
                           format: int64
                 - name: group_ids
                   in: query
-                  description: "Filter results to include photos captured by one of these group IDs"
+                  description: "Filter results to include photos captured by users in one of these group IDs"
                   schema:
                       type: array
                       items:
@@ -863,7 +877,7 @@ paths:
                           format: int64
                 - name: tag_ids
                   in: query
-                  description: "Filter results to include photos captured by one of these tag IDs"
+                  description: "Filter results to include photos with one of these tag IDs"
                   schema:
                       type: array
                       items:
@@ -871,7 +885,26 @@ paths:
                           format: int64
             responses:
                 "200":
-                    description: "List of projects sorted by most recent activity first"
+                    description: "List of photos sorted by captured date descending"
+                    headers:
+                        X-Next-Cursor:
+                            description: "Cursor that can be used as an 'after' param to fetch the next page of results. Empty if no more results"
+                            schema:
+                                type: string
+                        X-Prev-Cursor:
+                            description: "Cursor that can be used as a 'before' param to fetch the previous page of results. Empty if no previous results"
+                            schema:
+                                type: string
+                        X-Has-Next:
+                            description: "Indicates whether more results exist after the current page"
+                            schema:
+                                type: string
+                                enum: ["true", "false"]
+                        X-Has-Prev:
+                            description: "Indicates whether results exist before the current page"
+                            schema:
+                                type: string
+                                enum: ["true", "false"]
                     content:
                         application/json:
                             schema:
