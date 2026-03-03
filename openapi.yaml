@@ -3248,6 +3248,7 @@ components:
                     $ref: "#/components/schemas/Address"
                 logo:
                     type: array
+                    nullable: true
                     description: "A list of images for the different variants of the logo"
                     items:
                         $ref: "#/components/schemas/ImageURI"
