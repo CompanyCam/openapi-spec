@@ -4496,19 +4496,6 @@ components:
                         processed; otherwise the file extension of the
                         pending upload (e.g. `"mov"`, `"mp4"`).
                     example: "m3u8"
-                preview_gif_urls:
-                    type: object
-                    description: "Animated preview GIFs at three sizes. May be null until preview generation completes."
-                    properties:
-                        large:
-                            type: string
-                            nullable: true
-                        medium:
-                            type: string
-                            nullable: true
-                        small:
-                            type: string
-                            nullable: true
                 thumbnail_urls:
                     type: object
                     description: "Static thumbnail images at three sizes. May be null until the thumbnail has been fetched."
