@@ -982,6 +982,107 @@ paths:
                                 $ref: "#/components/schemas/Error"
                             example:
                                 errors: ["An unexpected error occured"]
+    /projects/{project_id}/videos:
+        get:
+            summary: "List Videos"
+            description: |
+                Returns videos captured at the specified project.
+
+                **Important:** Until a video's `status` is `processed`, the
+                `playback_url` field returns the raw upload URL (the
+                `pending_uri`) and `format` returns the file extension of
+                that URL — not the HLS playback URL or `m3u8`. Subscribe
+                to the `video.updated` webhook or poll
+                `GET /videos/{id}` until `status: processed` before
+                consuming `playback_url`/`format`.
+            operationId: listProjectVideos
+            tags:
+                - Projects
+            parameters:
+                - name: project_id
+                  in: path
+                  description: ID of the Project
+                  required: true
+                  schema:
+                      type: string
+                      format: id
+                - name: page
+                  in: query
+                  schema:
+                      type: integer
+                      format: int32
+                - name: per_page
+                  in: query
+                  schema:
+                      type: integer
+                      format: int32
+                - name: start_date
+                  in: query
+                  description: "A unix timestamp to return videos captured on or after the provided value"
+                  schema:
+                      type: string
+                - name: end_date
+                  in: query
+                  description: "A unix timestamp to return videos captured on or before the provided value"
+                  schema:
+                      type: string
+                - name: user_ids
+                  in: query
+                  description: "Filter results to include videos captured by one of these user IDs"
+                  schema:
+                      type: array
+                      items:
+                          type: integer
+                          format: int64
+                - name: group_ids
+                  in: query
+                  description: "Filter results to include videos captured by one of these group IDs"
+                  schema:
+                      type: array
+                      items:
+                          type: integer
+                          format: int64
+                - name: tag_ids
+                  in: query
+                  description: "Filter results to include videos tagged with one of these tag IDs"
+                  schema:
+                      type: array
+                      items:
+                          type: integer
+                          format: int64
+            responses:
+                "200":
+                    description: "List of videos sorted by capture date, most recent first"
+                    content:
+                        application/json:
+                            schema:
+                                type: array
+                                items:
+                                    $ref: "#/components/schemas/Video"
+                "400":
+                    description: "Bad Request"
+                    content:
+                        application/json:
+                            schema:
+                                $ref: "#/components/schemas/Error"
+                            example:
+                                errors: ["Bad Request"]
+                "404":
+                    description: "Not found"
+                    content:
+                        application/json:
+                            schema:
+                                $ref: "#/components/schemas/Error"
+                            example:
+                                errors: ["Record not found"]
+                "500":
+                    description: Unexpected error
+                    content:
+                        application/json:
+                            schema:
+                                $ref: "#/components/schemas/Error"
+                            example:
+                                errors: ["An unexpected error occured"]
     /projects/{project_id}/assigned_users:
         get:
             summary: "List assigned users"
@@ -2446,6 +2547,172 @@ paths:
                                 $ref: "#/components/schemas/Error"
                             example:
                                 errors: ["An unexpected error occurred"]
+    /videos:
+        get:
+            summary: "List Videos"
+            description: |
+                Returns videos visible to the authenticated user, sorted by
+                capture date (most recent first). Supports the same
+                filtering and pagination parameters as `/photos`.
+
+                **Important:** Until a video's `status` is `processed`, the
+                `playback_url` field returns the raw upload URL (the
+                `pending_uri`) and `format` returns the file extension of
+                that URL — not the HLS playback URL or `m3u8`. Subscribe
+                to the `video.updated` webhook or poll
+                `GET /videos/{id}` until `status: processed` before
+                consuming `playback_url`/`format`.
+            operationId: listVideos
+            tags:
+                - Videos
+            parameters:
+                - name: page
+                  in: query
+                  schema:
+                      type: integer
+                      format: int32
+                - name: per_page
+                  in: query
+                  schema:
+                      type: integer
+                      format: int32
+                - name: start_date
+                  in: query
+                  description: "A unix timestamp to return videos captured on or after the provided value"
+                  schema:
+                      type: string
+                - name: end_date
+                  in: query
+                  description: "A unix timestamp to return videos captured on or before the provided value"
+                  schema:
+                      type: string
+                - name: project_ids
+                  in: query
+                  description: "Filter results to include videos captured at one of these project IDs"
+                  schema:
+                      type: array
+                      items:
+                          type: integer
+                          format: int64
+                - name: user_ids
+                  in: query
+                  description: "Filter results to include videos captured by one of these user IDs"
+                  schema:
+                      type: array
+                      items:
+                          type: integer
+                          format: int64
+                - name: group_ids
+                  in: query
+                  description: "Filter results to include videos captured by one of these group IDs"
+                  schema:
+                      type: array
+                      items:
+                          type: integer
+                          format: int64
+                - name: tag_ids
+                  in: query
+                  description: "Filter results to include videos tagged with one of these tag IDs"
+                  schema:
+                      type: array
+                      items:
+                          type: integer
+                          format: int64
+            responses:
+                "200":
+                    description: "List of videos sorted by capture date, most recent first"
+                    content:
+                        application/json:
+                            schema:
+                                type: array
+                                items:
+                                    $ref: "#/components/schemas/Video"
+                "400":
+                    description: "Bad Request"
+                    content:
+                        application/json:
+                            schema:
+                                $ref: "#/components/schemas/Error"
+                            example:
+                                errors: ["Bad Request"]
+                "404":
+                    description: "Not found"
+                    content:
+                        application/json:
+                            schema:
+                                $ref: "#/components/schemas/Error"
+                            example:
+                                errors: ["Record not found"]
+                "500":
+                    description: Unexpected error
+                    content:
+                        application/json:
+                            schema:
+                                $ref: "#/components/schemas/Error"
+                            example:
+                                errors: ["An unexpected error occured"]
+    /videos/{id}:
+        get:
+            summary: "Retrieve Video"
+            description: |
+                Returns details for a single video.
+
+                **Important:** Until `status` is `processed`, `playback_url`
+                returns the raw upload URL (the `pending_uri`) and `format`
+                returns the file extension of that URL — not the HLS
+                playback URL or `m3u8`. Poll this endpoint until
+                `status: processed` before consuming
+                `playback_url`/`format`.
+            operationId: getVideo
+            tags:
+                - Videos
+            parameters:
+                - name: id
+                  in: path
+                  description: ID of the Video
+                  required: true
+                  schema:
+                      type: string
+                      format: id
+            responses:
+                "200":
+                    description: "Details about the video"
+                    content:
+                        application/json:
+                            schema:
+                                $ref: "#/components/schemas/Video"
+                "400":
+                    description: "Bad Request"
+                    content:
+                        application/json:
+                            schema:
+                                $ref: "#/components/schemas/Error"
+                            example:
+                                errors: ["Bad Request"]
+                "403":
+                    description: "Forbidden"
+                    content:
+                        application/json:
+                            schema:
+                                $ref: "#/components/schemas/Error"
+                            example:
+                                errors: ["Forbidden"]
+                "404":
+                    description: "Not found"
+                    content:
+                        application/json:
+                            schema:
+                                $ref: "#/components/schemas/Error"
+                            example:
+                                errors: ["Record not found"]
+                "500":
+                    description: Unexpected error
+                    content:
+                        application/json:
+                            schema:
+                                $ref: "#/components/schemas/Error"
+                            example:
+                                errors: ["An unexpected error occured"]
     /tags:
         get:
             summary: "List All Tags"
@@ -4143,10 +4410,112 @@ components:
                     description: "Timestamp when the project invitation was created on the server"
                     example: 1621857746
                 updated_at:
+                   type: integer
+                   format: int32
+                   description: "Timestamp when the project invitation was last updated"
+                   example: 1621857749
+        Video:
+            type: object
+            required:
+                - id
+            properties:
+                id:
+                    type: string
+                    description: "The unique ID for the video"
+                    example: "1138023"
+                company_id:
+                    type: string
+                    description: "A unique identifier for the Company the Video belongs to"
+                    example: "8292212"
+                creator_id:
+                    type: string
+                    description: "The id of the entity that created the Video"
+                    example: "2789583992"
+                creator_type:
+                    type: string
+                    description: "The type of the entity that created the Video"
+                    example: "User"
+                creator_name:
+                    type: string
+                    description: "The display name of the entity that created the Video"
+                    example: "Shawn Spencer"
+                project_id:
+                    type: string
+                    description: "The unique ID of the project the Video was captured at"
+                    example: "94772883"
+                coordinates:
+                    description: "The coordinates where the Video was captured"
+                    $ref: "#/components/schemas/Coordinate"
+                status:
+                    type: string
+                    description: |
+                        The video's processing status. Until `status` is
+                        `processed`, `playback_url` and `format` reflect the
+                        raw upload — not the HLS playback URL.
+                    enum:
+                        [
+                            "pending",
+                            "processing",
+                            "processed",
+                            "processing_error",
+                        ]
+                    example: "processed"
+                internal:
+                    type: boolean
+                    description: "Indicates whether the video is for internal use only and should not be used in marketing or other public materials"
+                    example: false
+                captured_at:
                     type: integer
                     format: int32
-                    description: "Timestamp when the project invitation was last updated"
-                    example: 1621857749
+                    description: "Unix timestamp when the Video was captured"
+                    example: 1721918461
+                created_at:
+                    type: integer
+                    format: int32
+                    description: "Unix timestamp when the video record was created on the server. May differ from `captured_at`."
+                    example: 1721918473
+                updated_at:
+                    type: integer
+                    format: int32
+                    description: "Unix timestamp when the video was last updated"
+                    example: 1721918492
+                playback_url:
+                    type: string
+                    nullable: true
+                    description: |
+                        Once `status` is `processed`, this is the HLS
+                        manifest URL (`.m3u8`) used to play the video.
+                        Before processing completes, this is the raw
+                        upload URL (the `pending_uri`).
+                    example: "https://stream.mux.com/abc123.m3u8"
+                format:
+                    type: string
+                    nullable: true
+                    description: |
+                        The video format. `"m3u8"` once the video has been
+                        processed; otherwise the file extension of the
+                        pending upload (e.g. `"mov"`, `"mp4"`).
+                    example: "m3u8"
+                thumbnail_urls:
+                    type: object
+                    description: "Static thumbnail images at three sizes. May be null until the thumbnail has been fetched."
+                    properties:
+                        large:
+                            type: string
+                            nullable: true
+                            example: "https://imgproxy.companycam.com/.../large.jpg"
+                        medium:
+                            type: string
+                            nullable: true
+                            example: "https://imgproxy.companycam.com/.../medium.jpg"
+                        small:
+                            type: string
+                            nullable: true
+                            example: "https://imgproxy.companycam.com/.../small.jpg"
+                duration:
+                    type: integer
+                    description: "Length of the video in seconds"
+                    example: 42
     securitySchemes:
         BearerAuth:
             type: http
