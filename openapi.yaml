@@ -433,6 +433,13 @@ paths:
                   description: "An ISO8601 formatted date and time to return projects modified on or after the provided value"
                   schema:
                       type: string
+                - name: status
+                  in: query
+                  required: false
+                  description: "An optional value to filter the projects by status. Use `active` to return only active projects (excluding deleted ones) or `deleted` to return only deleted projects. When omitted, projects of all statuses are returned."
+                  schema:
+                      type: string
+                      enum: ["active", "deleted"]
             responses:
                 "200":
                     description: "List of projects sorted by most recent activity first"
